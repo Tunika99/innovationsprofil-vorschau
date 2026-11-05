@@ -334,7 +334,7 @@
   #itz .itz-cta { position: relative; overflow: hidden; margin-top: 18px; padding: 50px 48px; border-color: var(--line2); }
   #itz .itz-cta .itz-burst { right: -260px; top: -240px; width: 760px; opacity: .32; }
   #itz .itz-cta-in { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px; }
-  #itz .itz-cover { width: 100%; max-width: 230px; display: block; border-radius: 4px; box-shadow: 0 22px 44px rgba(0,0,0,.55), 0 0 0 1px rgba(230,196,127,.12); }
+  #itz .itz-cover { width: 100%; max-width: 320px; margin: 0 auto; display: block; border-radius: 4px; box-shadow: 0 22px 44px rgba(0,0,0,.55), 0 0 0 1px rgba(230,196,127,.12); }
   #itz .itz-cta h2 { margin-top: 12px; font-family: var(--cond); font-weight: 600; font-size: clamp(42px, 5.4vw, 62px); line-height: .94; text-transform: uppercase; }
   #itz .itz-cta h2 span { display: block; }
   #itz .itz-authors { margin-top: 12px; color: var(--goldl); }
@@ -388,6 +388,8 @@
   #itz .itz-team-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; margin-top: 22px; }
   #itz .itz-codebox { display: block; margin-top: 6px; font-family: var(--cond); font-weight: 600; font-size: 34px; line-height: 1.1; letter-spacing: .1em; color: var(--goldl); }
   #itz .itz-field { display: flex; flex-direction: column; gap: 6px; }
+  #itz .itz-field > .itz-linkbox { flex: none; }
+  #itz .itz-dialog .itz-form { max-width: none; }
   #itz .itz-teamhead { padding-bottom: 8px; }
   #itz .itz-teamhead .itz-tagline { margin-top: 8px; font-size: 26px; color: var(--soft); }
   #itz .itz-members { margin-top: 14px; }
@@ -441,7 +443,7 @@
     #itz .itz-next { grid-area: next; }
     #itz .itz-card-body { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 36px; align-items: start; }
     #itz .itz-card h3 { font-size: 27px; }
-    #itz .itz-cta-in { grid-template-columns: 230px 1fr; gap: 50px; align-items: center; }
+    #itz .itz-cta-in { grid-template-columns: 320px 1fr; gap: 56px; align-items: center; }
     #itz .itz-types ul, #itz .itz-tease { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
     #itz .itz-tease li:last-child:nth-child(odd), #itz .itz-types li:last-child:nth-child(odd) { grid-column: auto; }
     #itz .itz-share { grid-template-columns: 1.35fr 1fr; gap: 30px; align-items: center; }
@@ -496,8 +498,9 @@
   }
   @media (min-width: 720px) {
     #itz .itz-course { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; padding: 70px 0 0; }
-    #itz .itz-course::before { left: 20px; top: 20px; bottom: auto; width: calc((100% - 80px) * 2 / 3 + 80px); border-left: 0; border-top: 1.5px dashed rgba(230,196,127,.45); }
+    #itz .itz-course::before { left: 20px; right: 20px; top: 20px; bottom: auto; width: auto; border-left: 0; border-top: 1.5px dashed rgba(230,196,127,.45); }
     #itz .itz-wp { left: 0; top: -70px; }
+    #itz .itz-wp--goal { left: auto; right: 0; }
   }
 
   /* Bereiche als beschriftetes Schiff */
@@ -705,7 +708,7 @@ var ITZ_CONFIG = {
           eyebrow: 'Selbsttest für Unternehmen',
           headline: ['Wie innovationsfähig', 'ist Ihr Unternehmen?'],
           intro: 'Innovation entsteht dort, wo Führung, Organisation, Kultur und der Blick nach außen zusammenspielen. Finden Sie mit 20 Aussagen heraus, wo Ihr Unternehmen steht.',
-          facts: ['Für Führungskräfte und Mitarbeitende', 'ca. 5 Minuten', '20 Aussagen', 'anonym'],
+          facts: ['ca. 5 Minuten', '20 Aussagen', 'anonym'],
           button: 'Test starten',
           steps: [
             { title: 'Aussagen bewerten', text: 'Sie bewerten 20 Aussagen so, wie es in Ihrem Unternehmen tatsächlich ist, nicht so, wie es sein sollte.' },
@@ -859,6 +862,7 @@ var ITZ_CONFIG = {
           lever: 'Ihr größter Hebel liegt im Bereich {name}. Kapitel {chapter} zeigt, wie Innovationsführer dort vorgehen, mit der vollständigen Checkliste.',
           text: 'Der Test beruht auf dem Buch von Nikolaus Franke und Rudolf Dömötör (WU Wien). Auf Basis von über 10.000 Unternehmensanalysen zeigen die Autoren, wie Innovationsführer Führung, Organisation, Kultur und Außenorientierung zu einem System verbinden. Mit Fallbeispielen aus dem Mittelstand und konkreten Ansatzpunkten für jeden Bereich.',
           checklist: 'Die vollständigen Checklisten zu allen vier Bereichen finden Sie im Buch.',
+          short: 'Über 10.000 Unternehmensanalysen, Fallbeispiele aus dem Mittelstand und die vollständigen Checklisten zu allen vier Bereichen.',
           discount: 'Ihr Vorteil aus dem Selbsttest: Mit dem Code {code} sparen Sie 10 %.',
           copy: 'Kopieren',
           copied: 'Kopiert',
@@ -929,7 +933,7 @@ var ITZ_CONFIG = {
           inviteBody: 'Ich möchte vergleichen, wie wir im Team die Innovationsfähigkeit unseres Unternehmens einschätzen. Der Test dauert etwa fünf Minuten, Namen werden dabei nicht übertragen. Öffnen Sie den Link oder geben Sie nach „Test starten“ den Team-Code {code} ein:\n{link}',
           codeTitle: 'Team-Code',
           startTitle: 'Allein oder im Team?',
-          startText: 'Hat jemand aus Ihrem Unternehmen eine Team-Runde angelegt, haben Sie einen Team-Code bekommen. Mit dem Code fließt Ihr Ergebnis ohne Namen in die gemeinsame Auswertung ein. Ohne Code machen Sie den Test nur für sich.',
+          startText: 'Normalerweise starten Sie ohne Code. Haben Sie von jemandem aus Ihrem Unternehmen einen Team-Code bekommen, geben Sie ihn hier ein. Ihr Ergebnis fließt dann ohne Namen in die gemeinsame Auswertung ein.',
           joinLabel: 'Team-Code (falls vorhanden)',
           joinStart: 'Mit Team-Code starten',
           soloStart: 'Ohne Code starten',
@@ -1061,7 +1065,7 @@ var ITZ_CONFIG = {
           eyebrow: 'Self-assessment for companies',
           headline: ['How innovative', 'is your company?'],
           intro: 'Innovation happens where leadership, organization, culture and an outward view work together. Use 20 statements to find out where your company stands.',
-          facts: ['For managers and employees', 'approx. 5 minutes', '20 statements', 'anonymous'],
+          facts: ['approx. 5 minutes', '20 statements', 'anonymous'],
           button: 'Start the test',
           steps: [
             { title: 'Rate the statements', text: 'You rate 20 statements according to how things really are in your company, not how they should be.' },
@@ -1215,6 +1219,7 @@ var ITZ_CONFIG = {
           lever: 'Your greatest lever is the area {name}. Chapter {chapter} shows how innovation leaders approach it, with the complete checklist.',
           text: 'The test is based on the book by Nikolaus Franke and Rudolf Dömötör (WU Vienna). Drawing on more than 10,000 company analyses, the authors show how innovation leaders combine leadership, organization, culture and external orientation into one system. With case studies from mid-sized companies and concrete starting points for each area.',
           checklist: 'You will find the complete checklists for all four areas in the book.',
+          short: 'More than 10,000 company analyses, case studies from mid-sized companies and the complete checklists for all four areas.',
           discount: 'Your benefit from the self-assessment: save 10% with the code {code}.',
           copy: 'Copy',
           copied: 'Copied',
@@ -1285,7 +1290,7 @@ var ITZ_CONFIG = {
           inviteBody: 'I would like to compare how our team rates the innovation capability of our company. The test takes about five minutes, and no names are transmitted. Open the link or enter the team code {code} after “Start the test”:\n{link}',
           codeTitle: 'Team code',
           startTitle: 'On your own or as a team?',
-          startText: 'If someone in your company has set up a team round, you received a team code. With the code, your result goes into the shared results without your name. Without a code, you take the test just for yourself.',
+          startText: 'Usually you start without a code. If someone in your company sent you a team code, enter it here. Your result then goes into the shared results without your name.',
           joinLabel: 'Team code (if you have one)',
           joinStart: 'Start with team code',
           soloStart: 'Start without code',
@@ -1987,10 +1992,10 @@ var ITZ_ASSETS = {
       '<button type="button" class="itz-dlg-x" data-action="dlg-close" aria-label="' + esc(T.share.close) + '">' + CLOSE + '</button>' +
       '<h2 class="itz-h2 itz-h2--sm" id="itz-sdlg-h">' + esc(TM.startTitle) + '</h2><p class="itz-dlg-lead">' + esc(TM.startText) + '</p>' +
       '<form class="itz-form" data-form="team-join" novalidate><div class="itz-field"><label class="itz-label" for="itz-join">' + esc(TM.joinLabel) + '</label>' +
-      '<input class="itz-linkbox" id="itz-join" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX" aria-describedby="itz-join-err"></div>' +
+      '<input class="itz-linkbox" id="itz-join" style="max-width:260px" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX" aria-describedby="itz-join-err"></div>' +
       '<p class="itz-error" id="itz-join-err" hidden></p>' +
-      '<div class="itz-dlg-row"><button type="submit" class="itz-btn">' + esc(TM.joinStart) + ARROW + '</button>' +
-      '<button type="button" class="itz-btn itz-btn--line" data-action="solo-start">' + esc(TM.soloStart) + '</button></div></form></div></dialog>';
+      '<div class="itz-dlg-row"><button type="button" class="itz-btn" data-action="solo-start">' + esc(TM.soloStart) + ARROW + '</button>' +
+      '<button type="submit" class="itz-btn itz-btn--line">' + esc(TM.joinStart) + '</button></div></form></div></dialog>';
   }
   function teamName(t, withQuotes) { var n = (t && t.name) || ''; return withQuotes ? (n ? (lang === 'en' ? ' “' + n + '”' : ' „' + n + '“') : '') : (n || T.team.board.unnamed); }
   function inviteLink(id, name) { return testUrl() + '#team=' + id + (name ? '&name=' + encodeURIComponent(name) : ''); }
@@ -2350,7 +2355,7 @@ var ITZ_ASSETS = {
   /* ---------- Ergebnis ---------- */
   function viewResult(res) {
     var R = T.result, type = T.types[res.type], sym = C.typing.symbols[res.type], nm = splitName(type.name), mine = personalPattern(res);
-    var nav = [['itz-s-type', R.nav.type], ['itz-s-profile', R.nav.profile], ['itz-s-elements', R.nav.elements]].concat(C.team.enabled ? [['itz-s-team', T.team.nav]] : []).concat([['itz-s-types', R.nav.types], ['itz-s-share', R.nav.share], ['itz-s-bench', R.nav.bench], ['itz-s-book', R.nav.book]]);
+    var nav = [['itz-s-type', R.nav.type], ['itz-s-profile', R.nav.profile], ['itz-s-elements', R.nav.elements]].concat(C.team.enabled ? [['itz-s-team', T.team.nav]] : []).concat([['itz-s-book', R.nav.book], ['itz-s-types', R.nav.types], ['itz-s-share', R.nav.share], ['itz-s-bench', R.nav.bench]]);
 
     var hero = '<section class="itz-rhero" aria-labelledby="itz-h"><div class="itz-burst">' + burstSvg('result', { seed: 3, rings: 10, rays: 110, dots: 190, flare: false }) + '</div>' +
       '<div class="itz-rgrid"><div>' +
@@ -2425,11 +2430,11 @@ var ITZ_ASSETS = {
     var A = T.cta, code = C.shop.discountCode, other = Object.keys(C.shop.products).filter(function (l) { return l !== lang; })[0];
     var lever = fill(A.lever, { name: T.elements[res.weakest.id].name, chapter: res.weakest.chapter });
     var bookSec = '<section class="itz-sec" id="itz-s-book"><div class="itz-panel itz-cta"><div class="itz-burst">' + burstSvg('cta', { seed: 9, rings: 10, rays: 110, dots: 190 }) + '</div><div class="itz-cta-in">' +
-      '<img class="itz-cover" src="' + esc(coverSrc(lang)) + '" alt="' + esc(T.book.title) + '" width="230" height="330">' +
+      '<img class="itz-cover" src="' + esc(coverSrc(lang)) + '" alt="' + esc(T.book.title) + '" width="320" height="460">' +
       '<div><h2>' + goldLines(T.book.titleLines) + '</h2>' +
         '<p class="itz-authors">' + esc(T.book.authors) + '</p>' +
         '<p class="itz-lever">' + esc(lever) + '</p>' +
-        '<p class="itz-ctatext">' + esc(A.text) + '</p><p class="itz-check">' + esc(A.checklist) + '</p>' +
+        '<p class="itz-ctatext">' + esc(A.short) + '</p>' +
         (code ? '<div class="itz-code"><p>' + esc(A.discount).replace('{code}', '<code>' + esc(code) + '</code>') + '</p><button type="button" data-action="copy-code">' + esc(A.copy) + '</button></div>' : '<div style="height:22px"></div>') +
         '<div class="itz-cta-actions"><a class="itz-btn" target="_top" href="' + esc(shopLink(lang, 'ergebnis-' + lang)) + '">' + esc(A.button) + ARROW + '</a><span class="itz-price">' + esc(T.book.priceLine) + '</span></div>' +
         (other ? '<p class="itz-other"><a target="_top" lang="' + other + '" href="' + esc(shopLink(other, 'ergebnis-' + other)) + '">' + esc(T.book.otherEdition) + '</a></p>' : '') +
@@ -2462,7 +2467,7 @@ var ITZ_ASSETS = {
     var foot = '<footer class="itz-foot"><p class="itz-disc">' + esc(F.disclaimer) + '</p><p>' + esc(F.sources) + '</p><p>' + esc(F.privacy) + '</p>' +
       '<button type="button" class="itz-btn itz-btn--line" data-action="restart">' + esc(F.restart) + '</button></footer>';
 
-    return '<div class="itz-screen">' + viewTop() + hero + navHtml + typeSec + profileSec + elementsSec + (C.team.enabled ? teamSec() + teamDialog() : '') + typesSec + shareSec + benchSec + bookSec + news + method + foot + '</div>';
+    return '<div class="itz-screen">' + viewTop() + hero + navHtml + typeSec + profileSec + elementsSec + (C.team.enabled ? teamSec() + teamDialog() : '') + bookSec + typesSec + shareSec + benchSec + news + method + foot + '</div>';
   }
 
   /* ---------- Rendern ---------- */
@@ -2572,7 +2577,7 @@ var ITZ_ASSETS = {
     if (!el || !root.contains(el)) return;
     var a = el.getAttribute('data-action');
     if (a === 'start') {
-      if (C.team.enabled && state.screen === 'start' && !state.invite && root.querySelector('#itz-sdlg')) { openDialog(el, '#itz-sdlg'); var jn = root.querySelector('#itz-join'); if (jn) jn.focus(); return; }
+      if (C.team.enabled && state.screen === 'start' && !state.invite && root.querySelector('#itz-sdlg')) { openDialog(el, '#itz-sdlg'); var so = root.querySelector('#itz-sdlg [data-action="solo-start"]'); if (so) so.focus(); return; }
       go(el, function () { state.screen = 'question'; state.page = 0; render(); });
     }
     else if (a === 'solo-start') { closeDialog(); state.screen = 'question'; state.page = 0; render(); }
