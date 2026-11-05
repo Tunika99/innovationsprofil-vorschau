@@ -209,6 +209,7 @@
   #itz .itz-qstatus.is-warn { color: var(--goldl); }
   #itz .itz-qhint { max-width: 860px; margin: 0 auto; padding: 4px 24px 80px; font-size: 14px; color: var(--dim); }
   @media (hover: none) { #itz .itz-qhint { display: none; } }
+  #itz .itz-qfoot { padding-bottom: 80px; }
   @media (max-width: 819px) { #itz .itz-qfoot .itz-btn { width: 100%; } #itz .itz-qfoot { padding-bottom: 64px; } }
 
   /* Ergebnis: Kopf mit Profil im Sternenbild */
@@ -476,8 +477,78 @@
     #itz .itz-dlg-row .itz-btn { width: 100%; }
   }
   @media (min-width: 1100px) { #itz .itz-lists { grid-template-columns: 1fr 1fr; gap: 30px; } }
+
+  /* Ablauf als Kurs auf der Seekarte */
+  #itz .itz-course { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px; padding-left: 54px; }
+  #itz .itz-course::before { content: ""; position: absolute; left: 19px; top: 20px; bottom: 30px; border-left: 1.5px dashed rgba(230,196,127,.45); }
+  #itz .itz-course li { position: relative; }
+  #itz .itz-wp { position: absolute; left: -54px; top: -6px; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--gold);
+    transition: transform .45s cubic-bezier(.2,.8,.2,1), background-color .3s ease; }
+  #itz .itz-wp::after { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); }
+  #itz .itz-wp--goal { border-color: var(--goldl); }
+  #itz .itz-wp--goal::after { display: none; }
+  #itz .itz-wp svg { width: 20px; height: 20px; color: var(--goldl); }
+  #itz .itz-course h3 { font-family: var(--cond); font-weight: 600; font-size: 24px; line-height: 1.1; letter-spacing: .05em; text-transform: uppercase; transition: color .3s ease; }
+  #itz .itz-course p { margin-top: 8px; max-width: 34ch; font-size: 16px; line-height: 1.55; color: var(--muted); }
+  @media (hover: hover) {
+    #itz .itz-course li:hover .itz-wp { transform: scale(1.15); background: rgba(230,196,127,.12); }
+    #itz .itz-course li:hover h3 { color: var(--goldl); }
+  }
+  @media (min-width: 720px) {
+    #itz .itz-course { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; padding: 70px 0 0; }
+    #itz .itz-course::before { left: 20px; top: 20px; bottom: auto; width: calc((100% - 80px) * 2 / 3 + 80px); border-left: 0; border-top: 1.5px dashed rgba(230,196,127,.45); }
+    #itz .itz-wp { left: 0; top: -70px; }
+  }
+
+  /* Bereiche als beschriftetes Schiff */
+  #itz .itz-anatomy { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; margin-top: 26px; align-items: center; }
+  #itz .itz-anat-art { position: relative; width: 100%; max-width: 520px; margin: 0 auto; aspect-ratio: 240 / 220; }
+  #itz .itz-anat-art .itz-ship { position: absolute; inset: 0; transition: opacity .35s ease; }
+  #itz .itz-anat-art .v-part { opacity: 0; }
+  #itz .itz-pin { display: inline-grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 50%; background: var(--goldl); color: var(--bg);
+    font-family: var(--cond); font-weight: 600; font-size: 16px; line-height: 1; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+  #itz .itz-anat-art .itz-pin { position: absolute; transform: translate(-50%, -50%); box-shadow: 0 4px 10px rgba(0,0,0,.45); }
+  #itz .itz-anat-list li { display: flex; gap: 16px; align-items: flex-start; padding: 18px 12px 18px 8px; border-top: 1px solid var(--line); cursor: default; outline-offset: 2px;
+    transition: background-color .3s ease, transform .35s cubic-bezier(.2,.8,.2,1); }
+  #itz .itz-anat-list li:last-child { border-bottom: 1px solid var(--line); }
+  #itz .itz-anat-list h3 { font-family: var(--cond); font-weight: 600; font-size: 24px; line-height: 1.1; letter-spacing: .04em; text-transform: uppercase; }
+  #itz .itz-anat-list p { margin-top: 4px; font-size: 16px; line-height: 1.5; color: var(--muted); }
+  #itz .itz-anat-list li:hover, #itz .itz-anat-list li:focus-visible { background: rgba(239,232,218,.04); transform: translateX(4px); }
+  #itz .itz-anatomy:has(.itz-anat-list li:hover, .itz-anat-list li:focus-visible) .v-all { opacity: 0; }
+  #itz .itz-anatomy:has(li[data-part="fuehrung"]:hover, li[data-part="fuehrung"]:focus-visible) .v-fuehrung,
+  #itz .itz-anatomy:has(li[data-part="organisation"]:hover, li[data-part="organisation"]:focus-visible) .v-organisation,
+  #itz .itz-anatomy:has(li[data-part="kultur"]:hover, li[data-part="kultur"]:focus-visible) .v-kultur,
+  #itz .itz-anatomy:has(li[data-part="aussen"]:hover, li[data-part="aussen"]:focus-visible) .v-aussen { opacity: 1; }
+  #itz .itz-anatomy:has(li[data-part="fuehrung"]:hover) .itz-anat-art .p-fuehrung,
+  #itz .itz-anatomy:has(li[data-part="organisation"]:hover) .itz-anat-art .p-organisation,
+  #itz .itz-anatomy:has(li[data-part="kultur"]:hover) .itz-anat-art .p-kultur,
+  #itz .itz-anatomy:has(li[data-part="aussen"]:hover) .itz-anat-art .p-aussen { transform: translate(-50%, -50%) scale(1.25); }
+  @media (min-width: 900px) { #itz .itz-anatomy { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; } }
+
+  /* Bereichskarten im Ergebnis: Pegel statt Etikett */
+  #itz .itz-card { padding: 24px 32px 30px; }
+  #itz .itz-card-head { grid-template-columns: 150px minmax(0, 1fr); gap: 24px; align-items: center; }
+  #itz .itz-card-head .itz-ship { width: 150px; }
+  #itz .itz-card-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  #itz .itz-card .itz-score b { font-size: 64px; line-height: .9; }
+  #itz .itz-gauge { position: relative; display: grid; gap: 4px; height: 10px; margin-top: 16px; }
+  #itz .itz-gauge .z { border-radius: 5px; background: #2A2E36; }
+  #itz .itz-gauge .z.on { background: rgba(230,196,127,.55); }
+  #itz .itz-gauge i { position: absolute; top: -6px; width: 4px; height: 22px; margin-left: -2px; border-radius: 2px; background: var(--ivory); box-shadow: 0 2px 6px rgba(0,0,0,.5); }
+  #itz .itz-gauge-l { display: grid; gap: 4px; margin-top: 10px; font-family: var(--cond); font-weight: 600; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+  #itz .itz-gauge-l .on { color: var(--goldl); }
+  #itz .itz-card-body { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line); }
+  #itz .itz-tip { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; background: none; border: 0; border-radius: 0; padding: 0; }
+  #itz .itz-tip-mark svg { display: block; width: 40px; height: 40px; }
+  @media (max-width: 819px) {
+    #itz .itz-card { padding: 18px 18px 24px; }
+    #itz .itz-card-head { grid-template-columns: 84px minmax(0, 1fr); gap: 14px; }
+    #itz .itz-card-head .itz-ship { width: 84px; }
+    #itz .itz-card .itz-score b { font-size: 44px; }
+    #itz .itz-gauge-l { font-size: 11px; letter-spacing: .06em; }
+  }
   @media (prefers-reduced-motion: reduce) {
-    #itz .itz-step:hover, #itz .itz-area:hover, #itz .itz-tease li:hover, #itz .itz-types li:hover, #itz .itz-ship svg { transform: none !important; }
+    #itz .itz-step:hover, #itz .itz-area:hover, #itz .itz-tease li:hover, #itz .itz-types li:hover, #itz .itz-ship svg, #itz .itz-course li:hover .itz-wp, #itz .itz-anat-list li:hover { transform: none !important; }
     #itz .itz-screen { animation: none; }
     #itz * { transition: none !important; }
     #itz .itz-hero-boat, #itz .itz-hero-sail, #itz .itz-hero-art .itz-burst, #itz .itz-btn, #itz .itz-btn svg, #itz .itz-dialog[open] { animation: none !important; }
@@ -634,7 +705,7 @@ var ITZ_CONFIG = {
           eyebrow: 'Selbsttest für Unternehmen',
           headline: ['Wie innovationsfähig', 'ist Ihr Unternehmen?'],
           intro: 'Innovation entsteht dort, wo Führung, Organisation, Kultur und der Blick nach außen zusammenspielen. Finden Sie mit 20 Aussagen heraus, wo Ihr Unternehmen steht.',
-          facts: ['Für Unternehmen', 'ca. 5 Minuten', '20 Aussagen', 'anonym'],
+          facts: ['Für Führungskräfte und Mitarbeitende', 'ca. 5 Minuten', '20 Aussagen', 'anonym'],
           button: 'Test starten',
           steps: [
             { title: 'Aussagen bewerten', text: 'Sie bewerten 20 Aussagen so, wie es in Ihrem Unternehmen tatsächlich ist, nicht so, wie es sein sollte.' },
@@ -653,7 +724,7 @@ var ITZ_CONFIG = {
         scale: ['Trifft gar nicht zu', 'Trifft eher nicht zu', 'Teils, teils', 'Trifft eher zu', 'Trifft voll zu'],
         statements: {
           F1: 'Die Unternehmensleitung verwendet einen erheblichen Teil ihrer eigenen Arbeitszeit auf Innovationsthemen.',
-          F2: 'Unsere Mitarbeiter kennen die Innovationsstrategie und wissen, wohin sich unsere Produkte und Leistungen entwickeln sollen.',
+          F2: 'Bei uns kennen alle die Innovationsstrategie und wissen, wohin sich unsere Produkte und Leistungen entwickeln sollen.',
           F3: 'Wenn eine vielversprechende Idee intern auf Widerstand stößt, stellt sich die Unternehmensleitung sichtbar hinter sie.',
           F4: 'Neben Verbesserungen bestehender Produkte verfolgen wir bewusst auch langfristige Vorhaben mit höherem Risiko.',
           F5: 'Wenn es wirtschaftlich eng wird, kürzen wir nicht zuerst bei Innovation.',
@@ -665,13 +736,13 @@ var ITZ_CONFIG = {
           K1: 'Wenn ein Innovationsprojekt scheitert, fragen wir zuerst, was wir daraus lernen, und nicht, wer schuld ist.',
           K2: 'Wer bei uns eine Idee einreicht, erhält schnell eine verbindliche Rückmeldung, wie es damit weitergeht.',
           K3: 'Bei uns ist es üblich, einen Teil der Arbeitszeit für eigene Ideen zu nutzen.',
-          K4: 'Die Mitarbeiter wissen, an welchen Innovationsprojekten das Unternehmen gerade arbeitet.',
+          K4: 'Im Unternehmen ist bekannt, an welchen Innovationsprojekten gerade gearbeitet wird.',
           K5: 'Ungewöhnliche Vorschläge werden bei uns ernsthaft geprüft, statt mit Sätzen wie „Das haben wir noch nie so gemacht“ abgetan zu werden.',
           A1: 'Kunden werden in allen Phasen unserer Innovationsprojekte einbezogen, nicht erst beim Verkauf.',
           A2: 'Ideen von außen, etwa von Kunden, Nutzern oder Lieferanten, nehmen wir genauso ernst wie eigene.',
           A3: 'Bei Innovationen arbeiten wir regelmäßig mit externen Partnern zusammen, zum Beispiel mit Hochschulen, Forschungseinrichtungen oder Start-ups.',
           A4: 'Wir beobachten systematisch, ob neue Technologien, Wettbewerber oder Geschäftsmodelle unseren Markt verändern könnten.',
-          A5: 'Unsere Mitarbeiter bringen regelmäßig Anregungen von außen mit, etwa von Messen, aus Fachkreisen oder aus Netzwerken.'
+          A5: 'Wir bringen regelmäßig Anregungen von außen mit, etwa von Messen, aus Fachkreisen oder aus Netzwerken.'
         },
         result: {
           eyebrow: 'Ihr Innovationstyp',
@@ -752,8 +823,8 @@ var ITZ_CONFIG = {
         feedback: {
           fuehrung: {
             high: { text: 'Die Unternehmensleitung treibt Innovation sichtbar an: mit eigener Zeit, mit einer bekannten Strategie und mit Rückendeckung für neue Ideen. Damit nutzen Sie den stärksten Hebel im System, denn die Leitung prägt auch Organisation, Kultur und Außenorientierung.', tip: 'Prüfen Sie mindestens einmal im Jahr, ob Ihre Innovationsstrategie noch zu Markt und Technologie passt. Bei den Innovationsführern geschieht das zu 97 %, bei deutschen KMU zu 43 %.' },
-            mid: { text: 'Innovation hat in der Unternehmensleitung einen Platz, aber nicht immer Vorrang. Im Tagesgeschäft rückt sie leicht nach hinten, und für die Mitarbeiter ist nicht immer klar, wohin die Reise gehen soll.', tip: 'Reservieren Sie im Kalender der Geschäftsführung feste Zeit für Innovationsthemen. In den TOP-100-Unternehmen verbringt das Top-Management rund ein Drittel seiner Arbeitszeit mit Innovation.' },
-            low: { text: 'Innovation ist derzeit vor allem Sache Einzelner und nicht der Unternehmensleitung. Ohne sichtbaren Rückhalt von oben fehlen neuen Ideen meist Zeit, Geld und Schutz gegen Widerstand.', tip: 'Legen Sie als Leitung fest, welche Rolle Innovation in den nächsten drei Jahren spielen soll, und geben Sie dem Ziel ein eigenes Budget. Die TOP-100-Unternehmen investieren im Schnitt 9,0 % ihres Umsatzes in Innovation.' }
+            mid: { text: 'Innovation hat in der Unternehmensleitung einen Platz, aber nicht immer Vorrang. Im Tagesgeschäft rückt sie leicht nach hinten, und für die Mitarbeiter ist nicht immer klar, wohin die Reise gehen soll.', tip: 'Ein guter Anfang ist feste Zeit für Innovationsthemen im Kalender der Geschäftsführung. In den TOP-100-Unternehmen verbringt das Top-Management rund ein Drittel seiner Arbeitszeit mit Innovation.' },
+            low: { text: 'Innovation ist derzeit vor allem Sache Einzelner und nicht der Unternehmensleitung. Ohne sichtbaren Rückhalt von oben fehlen neuen Ideen meist Zeit, Geld und Schutz gegen Widerstand.', tip: 'Ein erster Schritt: Die Leitung legt fest, welche Rolle Innovation in den nächsten drei Jahren spielen soll, und gibt dem Ziel ein eigenes Budget. Die TOP-100-Unternehmen investieren im Schnitt 9,0 % ihres Umsatzes in Innovation.' }
           },
           organisation: {
             high: { text: 'Ihre Abläufe tragen Innovation: Teams arbeiten über Bereichsgrenzen hinweg, der Weg einer Idee ist klar, und Projekte werden auch beendet, wenn sie keinen Sinn mehr ergeben. Achten Sie darauf, dass der Rahmen schlank bleibt, denn mit dem Wachstum wächst oft auch die Bürokratie.', tip: 'Stellen Sie einmal im Jahr jede Regel im Innovationsprozess auf den Prüfstand: Hilft sie dem Projekt, oder dient sie nur der Kontrolle?' },
@@ -855,7 +926,14 @@ var ITZ_CONFIG = {
           startSelf: 'Jetzt selbst den Test machen',
           openBoardBtn: 'Team-Auswertung öffnen',
           inviteSubject: 'Wie innovationsfähig ist unser Unternehmen?',
-          inviteBody: 'Ich möchte vergleichen, wie wir im Team die Innovationsfähigkeit unseres Unternehmens einschätzen. Der Test dauert etwa fünf Minuten, Namen werden dabei nicht übertragen:\n{link}',
+          inviteBody: 'Ich möchte vergleichen, wie wir im Team die Innovationsfähigkeit unseres Unternehmens einschätzen. Der Test dauert etwa fünf Minuten, Namen werden dabei nicht übertragen. Öffnen Sie den Link oder geben Sie nach „Test starten“ den Team-Code {code} ein:\n{link}',
+          codeTitle: 'Team-Code',
+          startTitle: 'Allein oder im Team?',
+          startText: 'Hat jemand aus Ihrem Unternehmen eine Team-Runde angelegt, haben Sie einen Team-Code bekommen. Mit dem Code fließt Ihr Ergebnis ohne Namen in die gemeinsame Auswertung ein. Ohne Code machen Sie den Test nur für sich.',
+          joinLabel: 'Team-Code (falls vorhanden)',
+          joinStart: 'Mit Team-Code starten',
+          soloStart: 'Ohne Code starten',
+          joinError: 'Dieser Team-Code stimmt nicht. Er hat acht Zeichen, zum Beispiel K7QM-2XRB.',
           nav: 'Team',
           sendTitle: 'Ergebnis an Ihr Team senden',
           sendText: 'Ihr Code enthält nur Ihre Antworten und die Rolle, die Sie angeben, aber keinen Namen. Wer Sie eingeladen hat, fügt ihn mit einem Klick zur Team-Auswertung hinzu.',
@@ -983,7 +1061,7 @@ var ITZ_CONFIG = {
           eyebrow: 'Self-assessment for companies',
           headline: ['How innovative', 'is your company?'],
           intro: 'Innovation happens where leadership, organization, culture and an outward view work together. Use 20 statements to find out where your company stands.',
-          facts: ['For companies', 'approx. 5 minutes', '20 statements', 'anonymous'],
+          facts: ['For managers and employees', 'approx. 5 minutes', '20 statements', 'anonymous'],
           button: 'Start the test',
           steps: [
             { title: 'Rate the statements', text: 'You rate 20 statements according to how things really are in your company, not how they should be.' },
@@ -1002,7 +1080,7 @@ var ITZ_CONFIG = {
         scale: ['Not true at all', 'Mostly not true', 'Partly true', 'Mostly true', 'Completely true'],
         statements: {
           F1: 'Senior management devotes a considerable share of its own working time to innovation.',
-          F2: 'Our employees know the innovation strategy and understand where our products and services are headed.',
+          F2: 'Everyone here knows the innovation strategy and understands where our products and services are headed.',
           F3: 'When a promising idea meets internal resistance, senior management visibly backs it.',
           F4: 'Alongside improving existing products, we deliberately pursue long-term projects with higher risk.',
           F5: 'When times get tough economically, innovation is not the first thing we cut.',
@@ -1014,13 +1092,13 @@ var ITZ_CONFIG = {
           K1: 'When an innovation project fails, our first question is what we can learn, not who is to blame.',
           K2: 'Anyone who submits an idea quickly receives a clear answer on what happens next.',
           K3: 'It is common for us to use part of our working time for our own ideas.',
-          K4: 'Employees know which innovation projects the company is currently working on.',
+          K4: 'People in the company know which innovation projects are currently under way.',
           K5: 'Unusual suggestions are seriously considered instead of being dismissed with lines like “We’ve never done it that way.”',
           A1: 'Customers are involved in every phase of our innovation projects, not just when it comes to selling.',
           A2: 'We take ideas from outside, for example from customers, users or suppliers, as seriously as our own.',
           A3: 'We regularly work with external partners on innovation, for example universities, research institutes or start-ups.',
           A4: 'We systematically monitor whether new technologies, competitors or business models could change our market.',
-          A5: 'Our employees regularly bring in ideas from outside, for example from trade fairs, professional circles or networks.'
+          A5: 'We regularly bring in ideas from outside, for example from trade fairs, professional circles or networks.'
         },
         result: {
           eyebrow: 'Your innovation type',
@@ -1101,8 +1179,8 @@ var ITZ_CONFIG = {
         feedback: {
           fuehrung: {
             high: { text: 'Senior management visibly drives innovation: with its own time, with a strategy that people know and with backing for new ideas. This is the strongest lever in the system, because leadership also shapes organization, culture and external orientation.', tip: 'Review at least once a year whether your innovation strategy still fits your market and technology. Among innovation leaders, 97% do this, compared with 43% of German SMEs.' },
-            mid: { text: 'Innovation has a place in senior management, but not always priority. Day-to-day business easily pushes it back, and employees are not always sure where things are heading.', tip: 'Block fixed time for innovation in the management team’s calendar. In the TOP 100 companies, senior management spends around a third of its working time on innovation.' },
-            low: { text: 'At the moment, innovation is driven mainly by individuals rather than by senior management. Without visible backing from the top, new ideas usually lack time, money and protection against resistance.', tip: 'Decide as a management team what role innovation should play over the next three years, and give that goal its own budget. On average, the TOP 100 companies invest 9.0% of their revenue in innovation.' }
+            mid: { text: 'Innovation has a place in senior management, but not always priority. Day-to-day business easily pushes it back, and employees are not always sure where things are heading.', tip: 'A good start is fixed time for innovation in the management team’s calendar. In the TOP 100 companies, senior management spends around a third of its working time on innovation.' },
+            low: { text: 'At the moment, innovation is driven mainly by individuals rather than by senior management. Without visible backing from the top, new ideas usually lack time, money and protection against resistance.', tip: 'A first step: management decides what role innovation should play over the next three years and gives that goal its own budget. On average, the TOP 100 companies invest 9.0% of their revenue in innovation.' }
           },
           organisation: {
             high: { text: 'Your processes support innovation: teams work across departmental boundaries, the path of an idea is clear, and projects are stopped when they no longer make sense. Make sure the framework stays lean, because bureaucracy often grows along with the company.', tip: 'Once a year, put every rule in your innovation process to the test: does it help the project, or does it only serve control?' },
@@ -1204,7 +1282,14 @@ var ITZ_CONFIG = {
           startSelf: 'Take the test now',
           openBoardBtn: 'Open team results',
           inviteSubject: 'How innovative is our company?',
-          inviteBody: 'I would like to compare how our team rates the innovation capability of our company. The test takes about five minutes, and no names are transmitted:\n{link}',
+          inviteBody: 'I would like to compare how our team rates the innovation capability of our company. The test takes about five minutes, and no names are transmitted. Open the link or enter the team code {code} after “Start the test”:\n{link}',
+          codeTitle: 'Team code',
+          startTitle: 'On your own or as a team?',
+          startText: 'If someone in your company has set up a team round, you received a team code. With the code, your result goes into the shared results without your name. Without a code, you take the test just for yourself.',
+          joinLabel: 'Team code (if you have one)',
+          joinStart: 'Start with team code',
+          soloStart: 'Start without code',
+          joinError: 'This team code is not correct. It has eight characters, for example K7QM-2XRB.',
           nav: 'Team',
           sendTitle: 'Send your result to your team',
           sendText: 'Your code contains only your answers and the role you choose, never your name. The person who invited you adds it to the team results with one click.',
@@ -1882,11 +1967,30 @@ var ITZ_ASSETS = {
   }
   function loadTeams() { try { var t = JSON.parse(localStorage.getItem(C.team.storageKey) || 'null'); return t && typeof t === 'object' ? t : memTeams; } catch (e) { return memTeams; } }
   function saveTeams(t) { memTeams = t; try { localStorage.setItem(C.team.storageKey, JSON.stringify(t)); } catch (e) {} }
+  /* Team-Code: 7 Zufallszeichen und ein Prüfzeichen, damit Tippfehler auffallen */
+  function teamCheck(x) { var sum = 0; for (var i = 0; i < 7; i++) sum += B32.indexOf(x[i]) * (i + 3); return B32[sum % 32]; }
   function newTeamId() {
-    var a = new Uint8Array(8), out = '';
-    if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(a); else for (var j = 0; j < 8; j++) a[j] = Math.floor(Math.random() * 256);
-    for (var i = 0; i < 8; i++) out += B32[a[i] % 32];
-    return out;
+    var a = new Uint8Array(7), out = '';
+    if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(a); else for (var j = 0; j < 7; j++) a[j] = Math.floor(Math.random() * 256);
+    for (var i = 0; i < 7; i++) out += B32[a[i] % 32];
+    return out + teamCheck(out);
+  }
+  function parseTeamCode(v) {
+    var x = String(v || '').toUpperCase().replace(/[^0-9A-Z]/g, '').replace(/O/g, '0').replace(/[IL]/g, '1');
+    if (x.length !== 8 || /[^0-9A-Z]/.test(x) || x.split('').some(function (c) { return B32.indexOf(c) < 0; })) return null;
+    return teamCheck(x) === x[7] ? x : null;
+  }
+  function teamCode(id) { return id.slice(0, 4) + '-' + id.slice(4); }
+  function startDialog() {
+    var TM = T.team;
+    return '<dialog class="itz-dialog" id="itz-sdlg" aria-labelledby="itz-sdlg-h"><div class="itz-dlg-in">' +
+      '<button type="button" class="itz-dlg-x" data-action="dlg-close" aria-label="' + esc(T.share.close) + '">' + CLOSE + '</button>' +
+      '<h2 class="itz-h2 itz-h2--sm" id="itz-sdlg-h">' + esc(TM.startTitle) + '</h2><p class="itz-dlg-lead">' + esc(TM.startText) + '</p>' +
+      '<form class="itz-form" data-form="team-join" novalidate><div class="itz-field"><label class="itz-label" for="itz-join">' + esc(TM.joinLabel) + '</label>' +
+      '<input class="itz-linkbox" id="itz-join" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX" aria-describedby="itz-join-err"></div>' +
+      '<p class="itz-error" id="itz-join-err" hidden></p>' +
+      '<div class="itz-dlg-row"><button type="submit" class="itz-btn">' + esc(TM.joinStart) + ARROW + '</button>' +
+      '<button type="button" class="itz-btn itz-btn--line" data-action="solo-start">' + esc(TM.soloStart) + '</button></div></form></div></dialog>';
   }
   function teamName(t, withQuotes) { var n = (t && t.name) || ''; return withQuotes ? (n ? (lang === 'en' ? ' “' + n + '”' : ' „' + n + '“') : '') : (n || T.team.board.unnamed); }
   function inviteLink(id, name) { return testUrl() + '#team=' + id + (name ? '&name=' + encodeURIComponent(name) : ''); }
@@ -1988,7 +2092,8 @@ var ITZ_ASSETS = {
         '<div><button type="submit" class="itz-btn">' + esc(TM.create) + ARROW + '</button></div></form>';
     }
     var link = inviteLink(state.leadTeam, t.name);
-    return head + '<p class="itz-label" style="margin-top:20px">' + esc(TM.linkReady) + '</p>' + shareRow(link, TM.inviteSubject, fill(TM.inviteBody, { link: link })) +
+    return head + '<p class="itz-label" style="margin-top:20px">' + esc(TM.codeTitle) + '</p><code class="itz-codebox">' + esc(teamCode(state.leadTeam)) + '</code>' +
+      '<p class="itz-label" style="margin-top:18px">' + esc(TM.linkReady) + '</p>' + shareRow(link, TM.inviteSubject, fill(TM.inviteBody, { link: link, code: teamCode(state.leadTeam) })) +
       '<div class="itz-dlg-row" style="margin-top:22px">' + (answersDone()
         ? '<button type="button" class="itz-btn" data-action="team-open">' + esc(TM.openBoardBtn) + ARROW + '</button>'
         : '<button type="button" class="itz-btn" data-action="team-start">' + esc(TM.startSelf) + ARROW + '</button>') + '</div>';
@@ -2027,7 +2132,8 @@ var ITZ_ASSETS = {
       '<div class="itz-linkrow" style="margin-top:0"><input class="itz-linkbox" id="itz-code-in" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="' + esc(B.addPlaceholder) + '">' +
       '<button type="submit" class="itz-btn itz-btn--sm">' + esc(B.add) + '</button></div></div>' +
       '<p class="itz-status" id="itz-code-msg" role="status"' + (state.teamMsg ? '' : ' hidden') + '>' + esc(state.teamMsg || '') + '</p></form></div>' +
-      '<div><h2 class="itz-h2 itz-h2--sm">' + esc(B.inviteTitle) + '</h2>' + shareRow(inviteLink(id, team.name), TM.inviteSubject, fill(TM.inviteBody, { link: inviteLink(id, team.name) })) + '</div></div></section>';
+      '<div><h2 class="itz-h2 itz-h2--sm">' + esc(B.inviteTitle) + '</h2><p class="itz-label" style="margin-top:14px">' + esc(TM.codeTitle) + '</p><code class="itz-codebox">' + esc(teamCode(id)) + '</code>' +
+      shareRow(inviteLink(id, team.name), TM.inviteSubject, fill(TM.inviteBody, { link: inviteLink(id, team.name), code: teamCode(id) })) + '</div></div></section>';
     state.teamMsg = '';
     var analysis = '';
     if (A.n < C.team.minMembers) {
@@ -2104,6 +2210,7 @@ var ITZ_ASSETS = {
   /* ---------- Bausteine ---------- */
   var ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var CHEVRON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 6 8 10.5 12.5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var STAR = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 12 8l6.5 2-6.5 2-2 6.5L8 12l-6.5-2L8 8z" fill="currentColor"/></svg>';
   var CLOSE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
   var BACK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
@@ -2137,14 +2244,20 @@ var ITZ_ASSETS = {
   function viewStart() {
     var S = T.start;
     var facts = S.facts.map(function (f, i) { return (i ? '<span class="itz-dotsep" aria-hidden="true">·</span>' : '') + '<span>' + esc(f) + '</span>'; }).join('');
-    var steps = S.steps.map(function (s, i) {
-      return '<li class="itz-step"><b>' + pad(i + 1) + '</b><h3>' + esc(s.title) + '</h3><p>' + esc(s.text) + '</p></li>';
-    }).join('');
-    var areas = C.elements.map(function (e) {
-      var t = T.elements[e.id];
-      return '<li class="itz-area"><div class="itz-ship">' + partSvg(e.id) + '</div><h3>' + esc(t.area) + '</h3><p class="itz-area-img">' + esc(fill(S.areaImage, { image: t.image })) + '</p><p>' + esc(t.about) + '</p></li>';
-    }).join('');
     var full = { fuehrung: 3, organisation: 3, kultur: 3, aussen: 3 };
+    var steps = S.steps.map(function (s, i) {
+      var goal = i === S.steps.length - 1;
+      return '<li><span class="itz-wp' + (goal ? ' itz-wp--goal' : '') + '" aria-hidden="true">' + (goal ? STAR : '') + '</span><h3>' + esc(s.title) + '</h3><p>' + esc(s.text) + '</p></li>';
+    }).join('');
+    /* Wo die Nummern auf dem Schiff sitzen, in Koordinaten der Zeichnung (240 x 220) */
+    var PINS = { fuehrung: [146, 38], kultur: [160, 98], organisation: [124, 152], aussen: [214, 58] };
+    var areas = '<div class="itz-anatomy"><div class="itz-anat-art" aria-hidden="true"><div class="itz-ship v-all">' + shipSvg(full, 'wake') + '</div>' +
+      C.elements.map(function (e) { return '<div class="itz-ship v-part v-' + e.id + '">' + partSvg(e.id) + '</div>'; }).join('') +
+      C.elements.map(function (e, i) { var pp = PINS[e.id]; return '<span class="itz-pin p-' + e.id + '" style="left:' + f1(pp[0] / 2.4) + '%;top:' + f1(pp[1] / 2.2) + '%">' + (i + 1) + '</span>'; }).join('') +
+      '</div><ol class="itz-anat-list">' + C.elements.map(function (e, i) {
+        var t = T.elements[e.id];
+        return '<li data-part="' + e.id + '" tabindex="0"><span class="itz-pin" aria-hidden="true">' + (i + 1) + '</span><div><h3>' + esc(t.area) + '</h3><p>' + esc(t.about) + '</p></div></li>';
+      }).join('') + '</ol></div>';
     return '<div class="itz-screen">' + viewTop() +
       '<section class="itz-hero" aria-labelledby="itz-h"><div class="itz-hero-in">' +
         '<div class="itz-hero-art" aria-hidden="true"><div class="itz-burst">' + burstSvg('hero', { seed: 11, rings: 9, rays: 80, dots: 130, flareLen: .32 }) + '</div>' +
@@ -2155,17 +2268,15 @@ var ITZ_ASSETS = {
           '<p class="itz-lead">' + esc(S.intro) + '</p>' +
           '<p class="itz-facts">' + facts + '</p>' +
           (state.invite ? '<p class="itz-invite">' + esc(fill(T.team.invited, { name: teamName(state.invite, true) })) + '</p>' : '') +
-          (C.team.enabled && !state.invite ? '<div class="itz-hero-actions"><button type="button" class="itz-btn itz-btn--hero" data-action="start">' + esc(S.button) + ARROW + '</button>' +
-            '<button type="button" class="itz-btn itz-btn--line" data-action="team-new" aria-haspopup="dialog">' + esc(T.team.startButton) + '</button></div>' + teamLinkHtml()
-            : '<button type="button" class="itz-btn itz-btn--hero" data-action="start">' + esc(S.button) + ARROW + '</button>') + '</div>' +
+          '<button type="button" class="itz-btn itz-btn--hero" data-action="start">' + esc(S.button) + ARROW + '</button>' + (C.team.enabled && !state.invite ? teamLinkHtml() : '') + '</div>' +
       '</div></section>' +
       '<div class="itz-wrap">' +
-        '<ol class="itz-grid3">' + steps + '</ol>' +
-        '<section class="itz-block"><div class="itz-block-head"><h2 class="itz-h2">' + esc(S.areasTitle) + '</h2><p class="itz-intro">' + esc(S.areasIntro) + '</p></div><ol class="itz-areas">' + areas + '</ol></section>' +
+        '<ol class="itz-course">' + steps + '</ol>' +
+        '<section class="itz-block"><div class="itz-block-head"><h2 class="itz-h2">' + esc(S.areasTitle) + '</h2><p class="itz-intro">' + esc(S.areasIntro) + '</p></div>' + areas + '</section>' +
         '<section class="itz-block"><div class="itz-block-head"><h2 class="itz-h2">' + esc(S.typesTitle) + '</h2><p class="itz-intro">' + esc(S.typesIntro) + '</p></div><ul class="itz-tease">' + typeCards() + '</ul></section>' +
         '<div class="itz-startcta"><button type="button" class="itz-btn" data-action="start">' + esc(S.button) + ARROW + '</button></div>' +
         '<p class="itz-startfoot">' + esc(S.privacy) + '</p>' +
-      '</div>' + (C.team.enabled ? teamDialog() : '') + '</div>';
+      '</div>' + (C.team.enabled ? startDialog() : '') + '</div>';
   }
 
   /* ---------- Fragen ---------- */
@@ -2194,7 +2305,7 @@ var ITZ_ASSETS = {
       '<div class="itz-stlist">' + list + '</div>' +
       '<div class="itz-qfoot"><p class="itz-qstatus" role="status" aria-live="polite"></p>' +
         '<button type="button" class="itz-btn" data-action="next">' + esc(last ? T.ui.finish : T.ui.next) + ARROW + '</button></div>' +
-      '<p class="itz-qhint">' + esc(T.ui.keyHint) + '</p></div>';
+      '</div>';
   }
   function pageInfo() {
     var pg = PAGES[state.page], open = -1, missing = 0;
@@ -2275,9 +2386,14 @@ var ITZ_ASSETS = {
 
     var cards = C.elements.map(function (e) {
       var v = res.per[e.id], lv = levelOf(v), fb = T.feedback[e.id][lv], name = T.elements[e.id].name;
+      var cols = 'grid-template-columns:' + C.levels.low + 'fr ' + (C.levels.high - C.levels.low) + 'fr ' + (100 - C.levels.high) + 'fr';
+      var zones = ['low', 'mid', 'high'];
       return '<article class="itz-card"><div class="itz-card-head"><div class="itz-ship">' + partSvg(e.id, levelNum(v)) + '</div>' +
-        '<div><h3>' + esc(name) + '</h3><p class="itz-lvl">' + esc(R.levelLabels[lv]) + '</p></div><p class="itz-score"><b>' + v + '</b><span class="itz-sr"> ' + esc(R.of) + '</span></p></div>' +
-        '<div class="itz-card-body"><p class="itz-txt">' + esc(fb.text) + '</p><div class="itz-tip"><strong>' + esc(R.tipLabel) + '</strong><p>' + esc(fb.tip) + '</p></div></div></article>';
+        '<div><div class="itz-card-top"><h3>' + esc(name) + '</h3><p class="itz-score"><b>' + v + '</b><span class="itz-sr"> ' + esc(R.of) + ', ' + esc(R.levelLabels[lv]) + '</span></p></div>' +
+        '<div class="itz-gauge" aria-hidden="true" style="' + cols + '">' + zones.map(function (z) { return '<span class="z' + (z === lv ? ' on' : '') + '"></span>'; }).join('') + '<i style="left:' + v + '%"></i></div>' +
+        '<div class="itz-gauge-l" aria-hidden="true" style="' + cols + '">' + zones.map(function (z) { return '<span' + (z === lv ? ' class="on"' : '') + '>' + esc(R.levelLabels[z]) + '</span>'; }).join('') + '</div></div></div>' +
+        '<div class="itz-card-body"><p class="itz-txt">' + esc(fb.text) + '</p><div class="itz-tip"><span class="itz-tip-mark" aria-hidden="true">' + burstSvg('mark', { size: 60, seed: 2, rings: 3, rays: 18, dots: 10, glow: .9, core: .035 }) + '</span>' +
+        '<div><strong>' + esc(R.tipLabel) + '</strong><p>' + esc(fb.tip) + '</p></div></div></div></article>';
     }).join('');
     var elementsSec = '<section class="itz-sec" id="itz-s-elements"><h2 class="itz-h2">' + esc(R.elementsTitle) + '</h2><p class="itz-intro">' + esc(R.elementsIntro) + '</p><div class="itz-cards">' + cards + '</div></section>';
 
@@ -2455,7 +2571,11 @@ var ITZ_ASSETS = {
     var el = ev.target.closest('[data-action]');
     if (!el || !root.contains(el)) return;
     var a = el.getAttribute('data-action');
-    if (a === 'start') go(el, function () { state.screen = 'question'; state.page = 0; render(); });
+    if (a === 'start') {
+      if (C.team.enabled && state.screen === 'start' && !state.invite && root.querySelector('#itz-sdlg')) { openDialog(el, '#itz-sdlg'); var jn = root.querySelector('#itz-join'); if (jn) jn.focus(); return; }
+      go(el, function () { state.screen = 'question'; state.page = 0; render(); });
+    }
+    else if (a === 'solo-start') { closeDialog(); state.screen = 'question'; state.page = 0; render(); }
     else if (a === 'back') { if (state.page > 0) state.page--; else state.screen = 'start'; render(); }
     else if (a === 'next') {
       var info = updateQuestion(true);
@@ -2529,6 +2649,15 @@ var ITZ_ASSETS = {
 
   root.addEventListener('submit', function (ev) {
     var form = ev.target, kind = form.getAttribute('data-form');
+    if (kind === 'team-join') {
+      ev.preventDefault();
+      var jin = form.querySelector('#itz-join'), jid = parseTeamCode(jin.value), jerr = form.querySelector('#itz-join-err');
+      if (!jid) { jerr.hidden = false; jerr.textContent = T.team.joinError; jin.setAttribute('aria-invalid', 'true'); jin.focus(); return; }
+      if (loadTeams()[jid]) state.leadTeam = jid;
+      else { state.invite = { id: jid, name: '' }; try { sessionStorage.setItem('itz-einladung', JSON.stringify(state.invite)); } catch (e) {} }
+      closeDialog(); state.screen = 'question'; state.page = 0; render();
+      return;
+    }
     if (kind === 'team-create') {
       ev.preventDefault();
       createTeam(form.querySelector('#itz-tname').value);
