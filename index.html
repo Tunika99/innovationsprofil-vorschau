@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Selbsttest: Wie innovationsfähig ist Ihr Unternehmen?</title>
-<meta name="description" content="20 Aussagen, ca. 5 Minuten: Prüfen Sie, wie Ihr Unternehmen in Führung, Organisation, Kultur und Offenheit nach außen aufgestellt ist, und erfahren Sie Ihren Innovationstyp.">
+<meta name="description" content="20 Aussagen, ca. 5 Minuten: Prüfen Sie, wie Ihr Unternehmen in Führung, Organisation, Kultur und Offenheit nach außen aufgestellt ist und erfahren Sie Ihren Innovationstyp.">
 <style>
   /* Nur für die eigenständige Seite. In Shopify wird dieser Block nicht mitkopiert. */
   html, body { margin: 0; padding: 0; background: #111317; }
@@ -555,6 +555,9 @@
     #itz .itz-card .itz-score b { font-size: 44px; }
     #itz .itz-gauge-l { font-size: 11px; letter-spacing: .06em; }
   }
+  #itz .itz-btn--li { min-height: 64px; font-size: 22px; }
+  #itz .itz-btn--li svg { width: 22px; height: 22px; }
+  #itz .itz-quick-note { padding: 12px 16px; border-radius: 16px; background: rgba(230,196,127,.08); border: 1px solid var(--line2); font-size: 15px; line-height: 1.5; color: var(--ivory); }
   @media (prefers-reduced-motion: reduce) {
     #itz .itz-step:hover, #itz .itz-area:hover, #itz .itz-tease li:hover, #itz .itz-types li:hover, #itz .itz-ship svg, #itz .itz-course li:hover .itz-wp, #itz .itz-anat-list li:hover { transform: none !important; }
     #itz .itz-screen { animation: none; }
@@ -717,7 +720,7 @@ var ITZ_CONFIG = {
           button: 'Test starten',
           steps: [
             { title: 'Aussagen bewerten', text: 'Sie bewerten 20 Aussagen so, wie es in Ihrem Unternehmen tatsächlich ist, nicht so, wie es sein sollte.' },
-            { title: 'Profil erhalten', text: 'Sie sehen, wie Ihr Unternehmen in den vier Bereichen aufgestellt ist, und erfahren Ihren Innovationstyp.' },
+            { title: 'Profil erhalten', text: 'Sie sehen, wie Ihr Unternehmen in den vier Bereichen aufgestellt ist und erfahren Ihren Innovationstyp.' },
             { title: 'Gezielt weiterarbeiten', text: 'Für jeden Bereich erhalten Sie einen konkreten Ansatzpunkt, mit dem Sie beginnen können.' }
           ],
           areasKicker: 'Was der Test betrachtet',
@@ -741,7 +744,7 @@ var ITZ_CONFIG = {
           O3: 'Wir beenden Innovationsprojekte konsequent, wenn sie ihre Ziele erkennbar verfehlen, auch wenn schon viel investiert wurde.',
           O4: 'Entscheidungen in Innovationsprojekten fallen bei uns schnell und ohne lange Abstimmungsschleifen.',
           O5: 'Erfahrungen aus abgeschlossenen Projekten werden festgehalten und sind für andere leicht zugänglich.',
-          K1: 'Wenn ein Innovationsprojekt scheitert, fragen wir zuerst, was wir daraus lernen, und nicht, wer schuld ist.',
+          K1: 'Wenn ein Innovationsprojekt scheitert, fragen wir zuerst, was wir daraus lernen und nicht, wer schuld ist.',
           K2: 'Wer bei uns eine Idee einreicht, erhält schnell eine verbindliche Rückmeldung, wie es damit weitergeht.',
           K3: 'Bei uns ist es üblich, einen Teil der Arbeitszeit für eigene Ideen zu nutzen.',
           K4: 'Im Unternehmen ist bekannt, an welchen Innovationsprojekten gerade gearbeitet wird.',
@@ -793,14 +796,14 @@ var ITZ_CONFIG = {
             text: 'Führung, Organisation, Kultur und Außenorientierung greifen in Ihrem Unternehmen ineinander. Innovation ist bei Ihnen Teil des Systems und hängt weder vom Zufall noch von einzelnen Personen ab. Damit ähnelt Ihre Einschätzung dem Muster, das die Forschung bei den Innovationsführern des TOP-100-Wettbewerbs findet.',
             strengths: ['Führung, Abläufe, Kultur und Außenkontakte verstärken sich gegenseitig.', 'Neue Ideen haben einen verlässlichen Weg in den Markt.'],
             risks: ['Erfolg kann träge machen: Was gestern funktioniert hat, wird seltener hinterfragt.', 'Mit dem Wachstum wächst oft auch die Bürokratie.'],
-            next: 'Halten Sie dieses Niveau, wenn das Unternehmen wächst, und öffnen Sie die Grenzen nach außen noch weiter.'
+            next: 'Halten Sie dieses Niveau, wenn das Unternehmen wächst und öffnen Sie die Grenzen nach außen noch weiter.'
           },
           umsetzer: {
             name: 'Zielstrebiger Macher',
             tagline: 'Klarer Kurs, Luft für mehr Impulse.',
             text: 'In Ihrem Unternehmen ist der Rahmen für Innovation deutlich stärker als die Impulse. Führung und Abläufe geben Richtung und Ordnung, doch Ideen aus der Belegschaft und Anstöße von Kunden und Partnern kommen zu kurz. Die Gefahr ist, dass Sie sehr gut umsetzen, was Sie ohnehin schon kennen.',
             strengths: ['Die Unternehmensleitung gibt eine klare Richtung vor.', 'Projekte werden diszipliniert geplant und umgesetzt.'],
-            risks: ['Ideen aus der Belegschaft und von außen kommen zu selten an.', 'Sie verbessern sehr gut, was Sie kennen, und übersehen Neues.'],
+            risks: ['Ideen aus der Belegschaft und von außen kommen zu selten an.', 'Sie verbessern sehr gut, was Sie kennen und übersehen Neues.'],
             next: 'Öffnen Sie den Rahmen für mehr Ideen von innen und außen, etwa durch Freiräume für Mitarbeiter und frühe Gespräche mit Kunden.'
           },
           entdecker: {
@@ -831,23 +834,23 @@ var ITZ_CONFIG = {
         feedback: {
           fuehrung: {
             high: { text: 'Die Unternehmensleitung treibt Innovation sichtbar an: mit eigener Zeit, mit einer bekannten Strategie und mit Rückendeckung für neue Ideen. Damit nutzen Sie den stärksten Hebel im System, denn die Leitung prägt auch Organisation, Kultur und Außenorientierung.', tip: 'Prüfen Sie mindestens einmal im Jahr, ob Ihre Innovationsstrategie noch zu Markt und Technologie passt. Bei den Innovationsführern geschieht das zu 97 %, bei deutschen KMU zu 43 %.' },
-            mid: { text: 'Innovation hat in der Unternehmensleitung einen Platz, aber nicht immer Vorrang. Im Tagesgeschäft rückt sie leicht nach hinten, und für die Mitarbeiter ist nicht immer klar, wohin die Reise gehen soll.', tip: 'Ein guter Anfang ist feste Zeit für Innovationsthemen im Kalender der Geschäftsführung. In den TOP-100-Unternehmen verbringt das Top-Management rund ein Drittel seiner Arbeitszeit mit Innovation.' },
-            low: { text: 'Innovation ist derzeit vor allem Sache Einzelner und nicht der Unternehmensleitung. Ohne sichtbaren Rückhalt von oben fehlen neuen Ideen meist Zeit, Geld und Schutz gegen Widerstand.', tip: 'Ein erster Schritt: Die Leitung legt fest, welche Rolle Innovation in den nächsten drei Jahren spielen soll, und gibt dem Ziel ein eigenes Budget. Die TOP-100-Unternehmen investieren im Schnitt 9,0 % ihres Umsatzes in Innovation.' }
+            mid: { text: 'Innovation hat in der Unternehmensleitung einen Platz, aber nicht immer Vorrang. Im Tagesgeschäft rückt sie leicht nach hinten und für die Mitarbeiter ist nicht immer klar, wohin die Reise gehen soll.', tip: 'Ein guter Anfang ist feste Zeit für Innovationsthemen im Kalender der Geschäftsführung. In den TOP-100-Unternehmen verbringt das Top-Management rund ein Drittel seiner Arbeitszeit mit Innovation.' },
+            low: { text: 'Innovation ist derzeit vor allem Sache Einzelner und nicht der Unternehmensleitung. Ohne sichtbaren Rückhalt von oben fehlen neuen Ideen meist Zeit, Geld und Schutz gegen Widerstand.', tip: 'Ein erster Schritt: Die Leitung legt fest, welche Rolle Innovation in den nächsten drei Jahren spielen soll und gibt dem Ziel ein eigenes Budget. Die TOP-100-Unternehmen investieren im Schnitt 9,0 % ihres Umsatzes in Innovation.' }
           },
           organisation: {
-            high: { text: 'Ihre Abläufe tragen Innovation: Teams arbeiten über Bereichsgrenzen hinweg, der Weg einer Idee ist klar, und Projekte werden auch beendet, wenn sie keinen Sinn mehr ergeben. Achten Sie darauf, dass der Rahmen schlank bleibt, denn mit dem Wachstum wächst oft auch die Bürokratie.', tip: 'Stellen Sie einmal im Jahr jede Regel im Innovationsprozess auf den Prüfstand: Hilft sie dem Projekt, oder dient sie nur der Kontrolle?' },
+            high: { text: 'Ihre Abläufe tragen Innovation: Teams arbeiten über Bereichsgrenzen hinweg, der Weg einer Idee ist klar und Projekte werden auch beendet, wenn sie keinen Sinn mehr ergeben. Achten Sie darauf, dass der Rahmen schlank bleibt, denn mit dem Wachstum wächst oft auch die Bürokratie.', tip: 'Stellen Sie einmal im Jahr jede Regel im Innovationsprozess auf den Prüfstand: Hilft sie dem Projekt, oder dient sie nur der Kontrolle?' },
             mid: { text: 'Die Grundstrukturen sind vorhanden, aber Innovation läuft noch nicht verlässlich. Typische Reibungsverluste sind lange Abstimmungen, unklare Zuständigkeiten oder Projekte, die zu lange weiterlaufen.', tip: 'Legen Sie für jedes Innovationsprojekt feste Prüfpunkte fest, an denen bewusst über Weitermachen oder Abbrechen entschieden wird. 82 % der Innovationsführer definieren Ziele für jede Phase, bei deutschen KMU sind es 39 %.' },
-            low: { text: 'Innovation hat in Ihrer Organisation noch keinen eigenen Weg. Ideen werden nebenher bearbeitet, oft in einem einzelnen Bereich, und ob sie den Markt erreichen, hängt vom Zufall ab.', tip: 'Besetzen Sie das nächste Innovationsvorhaben bewusst mit einem kleinen Team aus Entwicklung, Vertrieb und Produktion. Bei 94 % der Innovationsführer sind Projektteams so gemischt, bei deutschen KMU bei 46 %.' }
+            low: { text: 'Innovation hat in Ihrer Organisation noch keinen eigenen Weg. Ideen werden nebenher bearbeitet, oft in einem einzelnen Bereich und ob sie den Markt erreichen, hängt vom Zufall ab.', tip: 'Besetzen Sie das nächste Innovationsvorhaben bewusst mit einem kleinen Team aus Entwicklung, Vertrieb und Produktion. Bei 94 % der Innovationsführer sind Projektteams so gemischt, bei deutschen KMU bei 46 %.' }
           },
           kultur: {
             high: { text: 'In Ihrem Unternehmen wird Innovation im Alltag gelebt. Mitarbeiter bringen Ideen ein, bekommen Rückmeldung und dürfen Neues ausprobieren, auch auf die Gefahr hin, zu scheitern.', tip: 'Machen Sie gelungene Experimente und lehrreiche Fehlschläge gleichermaßen sichtbar, etwa in einer festen Runde im Monat. Mitarbeiter richten sich danach, was die Leitung öffentlich anerkennt.' },
-            mid: { text: 'Die Kultur ist grundsätzlich offen für Neues, doch im Alltag setzt sich oft die Vorsicht durch. Ideen werden eingebracht, aber nicht immer zügig aufgegriffen, und Fehler sind eher etwas, das man vermeidet.', tip: 'Sorgen Sie dafür, dass jede eingereichte Idee innerhalb von drei Wochen eine verbindliche Antwort bekommt. Die TOP-100-Innovationsführer entscheiden im Schnitt innerhalb von 13 Werktagen.' },
+            mid: { text: 'Die Kultur ist grundsätzlich offen für Neues, doch im Alltag setzt sich oft die Vorsicht durch. Ideen werden eingebracht, aber nicht immer zügig aufgegriffen und Fehler sind eher etwas, das man vermeidet.', tip: 'Sorgen Sie dafür, dass jede eingereichte Idee innerhalb von drei Wochen eine verbindliche Antwort bekommt. Die TOP-100-Innovationsführer entscheiden im Schnitt innerhalb von 13 Werktagen.' },
             low: { text: 'Neue Ideen haben es in Ihrem Unternehmen derzeit schwer. Wenn Vorschläge versanden oder Fehler persönliche Folgen haben, hören Mitarbeiter auf, Neues zu versuchen.', tip: 'Beginnen Sie bei der Reaktion auf Fehlschläge: Fragen Sie nach jedem gescheiterten Versuch zuerst, was das Unternehmen daraus gelernt hat. Kultur entsteht durch das tägliche Verhalten der Führung, nicht durch Leitbilder.' }
           },
           aussen: {
-            high: { text: 'Ihr Unternehmen ist offen nach außen. Kunden, Partner und externe Ideen fließen in die Entwicklung ein, und Sie beobachten, was sich in Ihrem Markt verändert.', tip: 'Suchen Sie gezielt nach Kunden, die Ihre Produkte schon selbst anpassen oder weiterentwickeln. In einer Studie mit 1.758 Managern stammten 58 % der Innovationen ursprünglich von Nutzern, geschätzt hatten die Manager knapp 22 %.' },
+            high: { text: 'Ihr Unternehmen ist offen nach außen. Kunden, Partner und externe Ideen fließen in die Entwicklung ein und Sie beobachten, was sich in Ihrem Markt verändert.', tip: 'Suchen Sie gezielt nach Kunden, die Ihre Produkte schon selbst anpassen oder weiterentwickeln. In einer Studie mit 1.758 Managern stammten 58 % der Innovationen ursprünglich von Nutzern, geschätzt hatten die Manager knapp 22 %.' },
             mid: { text: 'Sie haben Kontakt zu Kunden und Partnern, doch dieser Kontakt fließt nur zum Teil in die Innovationsarbeit ein. Oft kommen Kunden erst ins Spiel, wenn ein Produkt fast fertig ist.', tip: 'Beziehen Sie bei Ihrem nächsten Projekt zwei oder drei Kunden schon in der Ideenphase ein. Bei 92 % der Innovationsführer fließt die Kundenperspektive in alle Phasen ein, bei deutschen KMU bei 55 %.' },
-            low: { text: 'Ihr Unternehmen entwickelt Neues vor allem aus eigener Kraft und mit Blick nach innen. Dabei entgehen Ihnen Ideen von Kunden, Lieferanten und Forschung, und Veränderungen im Markt fallen spät auf.', tip: 'Führen Sie im nächsten Quartal regelmäßig Gespräche mit Kunden über deren ungelöste Probleme, ohne dabei etwas zu verkaufen. Die Top-Manager der TOP-100-Unternehmen haben an durchschnittlich 133 Tagen im Jahr direkten Kundenkontakt.' }
+            low: { text: 'Ihr Unternehmen entwickelt Neues vor allem aus eigener Kraft und mit Blick nach innen. Dabei entgehen Ihnen Ideen von Kunden, Lieferanten und Forschung und Veränderungen im Markt fallen spät auf.', tip: 'Führen Sie im nächsten Quartal regelmäßig Gespräche mit Kunden über deren ungelöste Probleme, ohne dabei etwas zu verkaufen. Die Top-Manager der TOP-100-Unternehmen haben an durchschnittlich 133 Tagen im Jahr direkten Kundenkontakt.' }
           }
         },
         benchmark: {
@@ -879,6 +882,9 @@ var ITZ_CONFIG = {
           text: 'Teilen Sie Ihr Profil als Bild, zum Beispiel in einem Beitrag auf LinkedIn. Das Bild zeigt nur Ihren Typ und Ihr Profil, keine persönlichen Daten.',
           imageAlt: 'Teilen-Bild: Innovationstyp {type} mit Profil in den vier Bereichen und dem Buch',
           openShare: 'Bild teilen',
+          quick: 'Auf LinkedIn teilen',
+          quickDone: 'Das Bild ist gespeichert und der Text kopiert. LinkedIn öffnet sich in einem neuen Fenster: Text einfügen, über das Bildsymbol das Bild hinzufügen und posten.',
+          editFirst: 'Text vorher anpassen',
           download: 'Bild herunterladen',
           downloaded: 'Gespeichert',
           dlgTitle: 'Ihr Ergebnis auf LinkedIn',
@@ -994,7 +1000,7 @@ var ITZ_CONFIG = {
             lower: 'niedriger',
             roleSame: 'Leitung und Mitarbeitende schätzen alle vier Bereiche ähnlich ein.',
             roleNote: 'Zur Leitung zählen Geschäftsführung und Führungskräfte. Der Vergleich erscheint, sobald aus beiden Gruppen ein Ergebnis vorliegt.',
-            bookText: 'Am weitesten auseinander liegen Sie im Bereich {area}. Kapitel {chapter} des Buches „{title}“ zeigt, wie Innovationsführer dort vorgehen, und eignet sich als Grundlage für Ihr Team-Gespräch.',
+            bookText: 'Am weitesten auseinander liegen Sie im Bereich {area}. Kapitel {chapter} des Buches „{title}“ zeigt, wie Innovationsführer dort vorgehen und eignet sich als Grundlage für Ihr Team-Gespräch.',
             bookButton: 'Zum Buch',
             ownResult: 'Zu meinem Ergebnis',
             takeTest: 'Test selbst machen',
@@ -1236,6 +1242,9 @@ var ITZ_CONFIG = {
           text: 'Share your profile as an image, for example in a LinkedIn post. The image shows only your type and profile, no personal data.',
           imageAlt: 'Share image: innovation type {type} with a profile across the four areas and the book',
           openShare: 'Share image',
+          quick: 'Share on LinkedIn',
+          quickDone: 'The image is saved and the text copied. LinkedIn opens in a new window: paste the text, add the image with the image icon and post.',
+          editFirst: 'Edit the text first',
           download: 'Download image',
           downloaded: 'Saved',
           dlgTitle: 'Your result on LinkedIn',
@@ -2221,6 +2230,7 @@ var ITZ_ASSETS = {
   var ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var CHEVRON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 6 8 10.5 12.5 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var STAR = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 12 8l6.5 2-6.5 2-2 6.5L8 12l-6.5-2L8 8z" fill="currentColor"/></svg>';
+  var LI = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.1c0-1.22-.02-2.79-1.7-2.79-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg>';
   var CLOSE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
   var BACK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
@@ -2360,7 +2370,7 @@ var ITZ_ASSETS = {
   /* ---------- Ergebnis ---------- */
   function viewResult(res) {
     var R = T.result, type = T.types[res.type], sym = C.typing.symbols[res.type], nm = splitName(type.name), mine = personalPattern(res);
-    var nav = [['itz-s-type', R.nav.type], ['itz-s-profile', R.nav.profile], ['itz-s-elements', R.nav.elements]].concat(C.team.enabled ? [['itz-s-team', T.team.nav]] : []).concat([['itz-s-book', R.nav.book], ['itz-s-types', R.nav.types], ['itz-s-share', R.nav.share], ['itz-s-bench', R.nav.bench]]);
+    var nav = [['itz-s-type', R.nav.type], ['itz-s-profile', R.nav.profile], ['itz-s-share', R.nav.share], ['itz-s-elements', R.nav.elements]].concat(C.team.enabled ? [['itz-s-team', T.team.nav]] : []).concat([['itz-s-book', R.nav.book], ['itz-s-types', R.nav.types], ['itz-s-bench', R.nav.bench]]);
 
     var hero = '<section class="itz-rhero" aria-labelledby="itz-h"><div class="itz-burst">' + burstSvg('result', { seed: 3, rings: 10, rays: 110, dots: 190, flare: false }) + '</div>' +
       '<div class="itz-rgrid"><div>' +
@@ -2424,8 +2434,10 @@ var ITZ_ASSETS = {
       '</ol></div></dialog>';
     var shareSec = '<section class="itz-sec" id="itz-s-share"><h2 class="itz-h2">' + esc(S.title) + '</h2><p class="itz-intro">' + esc(S.text) + '</p>' +
       '<div class="itz-share"><img id="itz-share-img" data-action="share-open" alt="' + esc(alt) + '" width="1200" height="627">' +
-      '<div class="itz-share-actions"><button type="button" class="itz-btn" data-action="share-open" aria-haspopup="dialog">' + esc(S.openShare) + ARROW + '</button>' +
-        '<button type="button" class="itz-btn itz-btn--line" data-action="download">' + esc(S.download) + '</button></div></div>' + dialog + '</section>';
+      '<div class="itz-share-actions"><button type="button" class="itz-btn itz-btn--li" data-action="li-quick">' + LI + esc(S.quick) + '</button>' +
+        '<p class="itz-quick-note" id="itz-quick-note" role="status" hidden></p>' +
+        '<button type="button" class="itz-btn itz-btn--line" data-action="download">' + esc(S.download) + '</button>' +
+        '<button type="button" class="itz-teamlink" style="margin:4px 0 0" data-action="share-open" aria-haspopup="dialog">' + esc(S.editFirst) + '</button></div></div>' + dialog + '</section>';
 
     var B = T.benchmark;
     var benchSec = '<section class="itz-sec" id="itz-s-bench"><h2 class="itz-h2">' + esc(B.title) + '</h2><div class="itz-panel itz-bench"><ul>' +
@@ -2472,7 +2484,7 @@ var ITZ_ASSETS = {
     var foot = '<footer class="itz-foot"><p class="itz-disc">' + esc(F.disclaimer) + '</p><p>' + esc(F.sources) + '</p><p>' + esc(F.privacy) + '</p>' +
       '<button type="button" class="itz-btn itz-btn--line" data-action="restart">' + esc(F.restart) + '</button></footer>';
 
-    return '<div class="itz-screen">' + viewTop() + hero + navHtml + typeSec + profileSec + elementsSec + (C.team.enabled ? teamSec() + teamDialog() : '') + bookSec + typesSec + shareSec + benchSec + news + method + foot + '</div>';
+    return '<div class="itz-screen">' + viewTop() + hero + navHtml + typeSec + profileSec + shareSec + elementsSec + (C.team.enabled ? teamSec() + teamDialog() : '') + bookSec + typesSec + benchSec + news + method + foot + '</div>';
   }
 
   /* ---------- Rendern ---------- */
@@ -2642,6 +2654,21 @@ var ITZ_ASSETS = {
     else if (a === 'copy-link') { copyPlain(el.getAttribute('data-link'), el, T.team.copied); }
     else if (a === 'native-link') { navigator.share({ title: el.getAttribute('data-title'), url: el.getAttribute('data-link') }).catch(function () {}); }
     else if (a === 'copy-post') copyText(postValue(), el, T.share.copied);
+    else if (a === 'li-quick') {
+      if (!shareBlob) return;
+      var note = root.querySelector('#itz-quick-note');
+      /* Am Handy über das Teilen-Menü direkt in die LinkedIn-App, am Rechner über LinkedIn im Browser */
+      if (canShareFile() && window.matchMedia && matchMedia('(pointer: coarse)').matches) {
+        navigator.share({ files: [shareFile()], text: postValue() }).catch(function () {});
+        return;
+      }
+      var dl = document.createElement('a');
+      dl.href = shareUrl; dl.download = T.share.fileName;
+      document.body.appendChild(dl); dl.click(); dl.remove();
+      copyText(postValue());
+      window.open(linkedinHref(postValue()), '_blank', 'noopener');
+      if (note) { note.hidden = false; note.textContent = T.share.quickDone; }
+    }
     else if (a === 'open-linkedin') { el.href = linkedinHref(postValue()); copyText(postValue()); }
   });
 
