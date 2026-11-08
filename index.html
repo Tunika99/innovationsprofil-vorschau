@@ -386,6 +386,7 @@
   #itz .itz-linkbox:focus-visible, #itz .itz-select:focus-visible { border-color: var(--goldl); outline-offset: 2px; }
   #itz .itz-select { min-height: 48px; max-width: 100%; padding: 0 14px; border: 1.5px solid #3A3E46; border-radius: 14px; background: var(--bg); color: var(--ivory); font: 400 15px var(--sans); }
   #itz .itz-team { padding: 32px 34px 34px; }
+  #itz .itz-teamwrap { scroll-margin-top: 76px; }
   #itz .itz-team .itz-intro { margin-top: 8px; }
   #itz .itz-team-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; margin-top: 22px; }
   #itz .itz-codebox { display: block; margin-top: 6px; font-family: var(--cond); font-weight: 600; font-size: 34px; line-height: 1.1; letter-spacing: .1em; color: var(--goldl); }
@@ -647,7 +648,7 @@ var ITZ_CONFIG = {
   /* Team-Runde: Kolleg:innen einladen und Einschätzungen vergleichen.
      Es gibt keinen Server: Jede Person schickt einen kurzen Code ohne Namen,
      die Auswertung entsteht im Browser der einladenden Person. */
-  team: { enabled: true, minMembers: 2, storageKey: 'itz-teamrunden' },
+  team: { enabled: true, minMembers: 3, storageKey: 'itz-teamrunden' },
 
   /* Auswertung. Jede Antwort zählt 0, 25, 50, 75 oder 100 Punkte. */
   levels: { low: 45, high: 70 },   // unter 45: Entwicklungsfeld, ab 70: Stärke
@@ -975,14 +976,23 @@ var ITZ_CONFIG = {
           resultSubject: 'Mein Ergebnis für die Team-Runde{name}',
           resultBody: 'Hier ist mein Ergebnis aus dem Innovations-Selbsttest. Ein Klick auf den Link fügt es der Team-Auswertung hinzu:\n{link}\n\nCode: {code}',
           leadTitle: 'Ihre Team-Runde{name}',
+          teamCount: 'Bisher {n} Teilnahmen, Ihre eingeschlossen.',
+          teamCountOne: 'Bisher ist nur Ihr eigenes Ergebnis dabei.',
+          teamWait: 'Die Team-Auswertung erscheint ab drei Teilnahmen, damit niemand Einzelne erkennen kann.',
+          shareTitle: 'So kommen alle zur Auswertung',
+          shareHint: 'Teilen Sie den Link in Ihrer Team-Gruppe, etwa in Teams, Slack oder WhatsApp. Wer ihn öffnet, sieht die Auswertung und kann selbst mitmachen. Danach teilt jede Person den Link aus ihrem Ergebnis wieder in der Gruppe. So wächst die Auswertung mit jeder Teilnahme.',
+          groupSubject: 'Unsere Team-Auswertung: Wie innovationsfähig ist unser Unternehmen?',
+          groupBody: 'Unsere Team-Auswertung zum Innovationsprofil: Link öffnen, den Test machen (ca. 5 Minuten, anonym) und danach den Link aus dem eigenen Ergebnis wieder hier teilen. So sehen alle die gemeinsame Auswertung. Team-Code: {code}\n{link}',
           leadText: 'Bisher liegen {n} Ergebnisse vor, Ihres eingeschlossen.',
           leadTextOne: 'Bisher liegt nur Ihr eigenes Ergebnis vor. Laden Sie Kolleg:innen ein, damit ein Vergleich entsteht.',
           inviteMore: 'Kolleg:innen einladen',
           newTitle: 'Mit dem Team vergleichen',
           newText: 'Teilen Ihre Kolleg:innen Ihre Einschätzung zum Unternehmen? Alle füllen den Test zunächst individuell aus. Anschließend macht die Auswertung Ihre gemeinsamen Nenner sowie unterschiedliche Sichtweisen im Team sichtbar.',
-          newButton: 'Team einladen',
+          newButton: 'Team-Runde starten',
           board: {
             title: 'Team-Auswertung',
+            count: '{n} Teilnahmen bisher.',
+            join: 'Jetzt selbst mitmachen',
             unnamed: 'Team-Runde',
             members: 'Ergebnisse in dieser Runde',
             you: 'Sie',
@@ -996,7 +1006,7 @@ var ITZ_CONFIG = {
             duplicate: 'Dieser Code ist schon in der Auswertung.',
             invalid: 'Dieser Code ist unvollständig oder falsch. Prüfen Sie, ob er ganz kopiert wurde.',
             empty: 'Sobald mindestens zwei Ergebnisse vorliegen, sehen Sie hier den Vergleich.',
-            inviteTitle: 'Weitere Personen einladen',
+            inviteTitle: 'Link weitergeben',
             typeTitle: 'Ihr Team als Ganzes',
             typeText: 'Aus dem Durchschnitt der {n} Ergebnisse ergibt sich der Typ „{type}“.',
             typeWarn: 'Im Bereich {area} liegen die Einschätzungen so weit auseinander, dass der Durchschnitt dort wenig aussagt.',
@@ -1020,7 +1030,7 @@ var ITZ_CONFIG = {
             bookButton: 'Zum Buch',
             ownResult: 'Zu meinem Ergebnis',
             takeTest: 'Test selbst machen',
-            privacy: 'Die Team-Ergebnisse werden nur in diesem Browser gespeichert. Die Codes enthalten keine Namen.',
+            privacy: 'Die Ergebnisse stecken im Link selbst und werden nur in Ihrem Browser gespeichert. Namen werden nicht übertragen.',
             deleteTeam: 'Team-Runde löschen',
             deleteAsk: 'Diese Team-Runde mit allen Ergebnissen löschen?'
           }
@@ -1335,14 +1345,23 @@ var ITZ_CONFIG = {
           resultSubject: 'My result for the team round{name}',
           resultBody: 'Here is my result from the innovation self-assessment. One click on the link adds it to the team results:\n{link}\n\nCode: {code}',
           leadTitle: 'Your team round{name}',
+          teamCount: 'So far {n} people have taken part, including you.',
+          teamCountOne: 'So far only your own result is included.',
+          teamWait: 'The team results appear from three participants on, so that nobody can be identified.',
+          shareTitle: 'How everyone gets to the results',
+          shareHint: 'Share the link in your team group, for example in Teams, Slack or WhatsApp. Anyone who opens it sees the results and can take part. Afterwards each person shares the link from their own result in the group again. That way the results grow with every participant.',
+          groupSubject: 'Our team results: how innovative is our company?',
+          groupBody: 'Our team results for the innovation profile: open the link, take the test (about 5 minutes, anonymous) and then share the link from your own result here again. That way everyone sees the shared results. Team code: {code}\n{link}',
           leadText: 'So far there are {n} results, including yours.',
           leadTextOne: 'So far only your own result is in. Invite colleagues so that a comparison can emerge.',
           inviteMore: 'Invite colleagues',
           newTitle: 'Compare with your team',
           newText: 'Do your colleagues share your view of the company? Everyone fills in the test individually first. The results then show what you have in common and where views in the team differ.',
-          newButton: 'Invite your team',
+          newButton: 'Start a team round',
           board: {
             title: 'Team results',
+            count: '{n} participants so far.',
+            join: 'Take part now',
             unnamed: 'Team round',
             members: 'Results in this round',
             you: 'You',
@@ -1356,7 +1375,7 @@ var ITZ_CONFIG = {
             duplicate: 'This code is already in the results.',
             invalid: 'This code is incomplete or wrong. Check that it was copied in full.',
             empty: 'As soon as there are at least two results, the comparison appears here.',
-            inviteTitle: 'Invite more people',
+            inviteTitle: 'Pass the link on',
             typeTitle: 'Your team as a whole',
             typeText: 'The average of the {n} results gives the type “{type}”.',
             typeWarn: 'In {area}, the ratings are so far apart that the average says little there.',
@@ -1380,7 +1399,7 @@ var ITZ_CONFIG = {
             bookButton: 'To the book',
             ownResult: 'Back to my result',
             takeTest: 'Take the test',
-            privacy: 'Team results are stored only in this browser. The codes contain no names.',
+            privacy: 'The results are contained in the link itself and stored only in your browser. No names are transmitted.',
             deleteTeam: 'Delete team round',
             deleteAsk: 'Delete this team round and all its results?'
           }
@@ -2028,8 +2047,13 @@ var ITZ_ASSETS = {
       '<button type="submit" class="itz-btn itz-btn--line">' + esc(TM.joinStart) + '</button></div></form></div></dialog>';
   }
   function teamName(t, withQuotes) { var n = (t && t.name) || ''; return withQuotes ? (n ? (lang === 'en' ? ' “' + n + '”' : ' „' + n + '“') : '') : (n || T.team.board.unnamed); }
-  function inviteLink(id, name) { return testUrl() + '#team=' + id + (name ? '&name=' + encodeURIComponent(name) : ''); }
-  function boardLink(id, name, code) { return testUrl() + '#board=' + id + (name ? '&name=' + encodeURIComponent(name) : '') + '&add=' + code.replace(/-/g, ''); }
+  /* Ein Link pro Team: Er trägt die Team-ID und alle bisher bekannten Ergebnisse (je 12 Zeichen, ohne Namen). */
+  function teamLink(id) {
+    var t = loadTeams()[id] || { name: '', members: [] };
+    var codes = (t.members || []).map(function (m) { return m.code.replace(/-/g, ''); }).join('');
+    return testUrl() + '#team=' + id + (t.name ? '&name=' + encodeURIComponent(t.name) : '') + (codes ? '&r=' + codes : '');
+  }
+  function inviteLink(id) { return teamLink(id); }
   function selfMember(team) { return team && (team.members || []).filter(function (m) { return m.self && decodeResult(m.code); })[0]; }
   function answersDone() { return state.answers.every(function (a) { return a != null; }); }
   function addMember(team, d, self) {
@@ -2058,22 +2082,22 @@ var ITZ_ASSETS = {
     var raw = (location.hash || '').replace(/^#/, '');
     if (!/(^|&)(team|board)=/.test(raw)) return;
     var h = new URLSearchParams(raw), teams = loadTeams();
-    if (h.get('team')) {
-      var tid = h.get('team').replace(/[^0-9A-Z]/gi, '').slice(0, 12);
-      if (teams[tid]) state.leadTeam = tid;
-      else { state.invite = { id: tid, name: (h.get('name') || '').slice(0, 60) }; try { sessionStorage.setItem('itz-einladung', JSON.stringify(state.invite)); } catch (e) {} }
-    }
-    if (h.get('board')) {
-      var id = h.get('board').replace(/[^0-9A-Z]/gi, '').slice(0, 12);
-      if (!teams[id]) teams[id] = { name: (h.get('name') || '').slice(0, 60), created: Date.now(), members: [] };
-      var d = decodeResult(h.get('add'));
-      state.teamMsg = h.get('add') ? (d ? T.team.board[addMember(teams[id], d)] : T.team.board.invalid) : '';
-      saveTeams(teams);
-      state.leadTeam = id; state.board = id; state.screen = 'team';
-    }
+    var id = (h.get('team') || h.get('board') || '').replace(/[^0-9A-Z]/gi, '').toUpperCase().slice(0, 12);
+    if (!id) return;
+    if (!teams[id]) teams[id] = { name: (h.get('name') || '').slice(0, 60), created: Date.now(), members: [] };
+    if (!teams[id].name && h.get('name')) teams[id].name = h.get('name').slice(0, 60);
+    var r = (h.get('r') || '') + (h.get('add') || ''), added = 0;
+    r = r.toUpperCase().replace(/[^0-9A-Z]/g, '');
+    for (var i = 0; i + 12 <= r.length; i += 12) { var d = decodeResult(r.slice(i, i + 12)); if (d && addMember(teams[id], d) === 'added') added++; }
+    saveTeams(teams);
+    state.leadTeam = id;
+    if (!selfMember(teams[id])) { state.invite = { id: id, name: teams[id].name || '' }; try { sessionStorage.setItem('itz-einladung', JSON.stringify(state.invite)); } catch (e) {} }
+    /* Liegen schon Ergebnisse vor, sieht man zuerst die Team-Auswertung */
+    if ((teams[id].members || []).length) { state.board = id; state.screen = 'team'; }
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
   try { if (!state.invite) { var inv = JSON.parse(sessionStorage.getItem('itz-einladung') || 'null'); if (inv && inv.id) state.invite = inv; } } catch (e) {}
+  if (state.invite && !state.leadTeam && loadTeams()[state.invite.id]) state.leadTeam = state.invite.id;
 
   function teamAnalysis(team) {
     var ms = [];
@@ -2117,96 +2141,74 @@ var ITZ_ASSETS = {
     return '<div class="itz-field"><label class="itz-label" for="itz-role">' + esc(TM.roleLabel) + '</label><select class="itz-select" id="itz-role">' +
       TM.roles.map(function (r, i) { return '<option value="' + i + '"' + (state.role === i ? ' selected' : '') + '>' + esc(r) + '</option>'; }).join('') + '</select></div>';
   }
-  function teamDialogInner() {
-    var TM = T.team, t = state.leadTeam && loadTeams()[state.leadTeam];
-    var head = '<button type="button" class="itz-dlg-x" data-action="dlg-close" aria-label="' + esc(T.share.close) + '">' + CLOSE + '</button>' +
-      '<h2 class="itz-h2 itz-h2--sm" id="itz-tdlg-h">' + esc(TM.dlgTitle) + '</h2><p class="itz-dlg-lead">' + esc(TM.dlgIntro) + '</p>';
-    if (!t) {
-      return head + '<form class="itz-form" data-form="team-create" novalidate><div class="itz-field"><label class="itz-label" for="itz-tname">' + esc(TM.nameLabel) + '</label>' +
-        '<input class="itz-linkbox" id="itz-tname" maxlength="60" autocomplete="off" placeholder="' + esc(TM.namePlaceholder) + '"></div>' +
-        '<div><button type="submit" class="itz-btn">' + esc(TM.create) + ARROW + '</button></div></form>';
-    }
-    var link = inviteLink(state.leadTeam, t.name);
-    return head + '<p class="itz-label" style="margin-top:20px">' + esc(TM.codeTitle) + '</p><code class="itz-codebox">' + esc(teamCode(state.leadTeam)) + '</code>' +
-      '<p class="itz-label" style="margin-top:18px">' + esc(TM.linkReady) + '</p>' + shareRow(link, TM.inviteSubject, fill(TM.inviteBody, { link: link, code: teamCode(state.leadTeam) })) +
-      '<div class="itz-dlg-row" style="margin-top:22px">' + (answersDone()
-        ? '<button type="button" class="itz-btn" data-action="team-open">' + esc(TM.openBoardBtn) + ARROW + '</button>'
-        : '<button type="button" class="itz-btn" data-action="team-start">' + esc(TM.startSelf) + ARROW + '</button>') + '</div>';
+  function teamDialog() { return ''; }
+
+  /* Die Auswertung selbst: Typ, Spannen, strittige Aussagen, Buch */
+  function teamAnalysisHtml(team) {
+    var B = T.team.board, A = teamAnalysis(team);
+    if (A.n < C.team.minMembers) return '';
+    var tt = T.types[A.type], sym = C.typing.symbols[A.type], pat = {};
+    C.elements.forEach(function (e) { pat[e.id] = levelNum(A.mean[e.id]); });
+    var w = A.areas[A.widest.id];
+    var typeHtml = '<section class="itz-sec"><h2 class="itz-h2 itz-h2--sm">' + esc(B.typeTitle) + '</h2><div class="itz-teamtype" style="margin-top:18px"><div class="itz-ship">' + shipSvg(pat, sym.mark) + '</div><div>' +
+      '<h3>' + esc(tt.name) + '</h3><p class="itz-serif" style="font-size:24px;color:var(--ivory)">' + esc(tt.tagline) + '</p><p>' + esc(fill(B.typeText, { n: A.n, type: tt.name })) + '</p>' +
+      (w.max - w.min > 35 ? '<p>' + esc(fill(B.typeWarn, { area: T.elements[A.widest.id].area })) + '</p>' : '') + '</div></div></section>';
+    var spread = C.elements.map(function (e) {
+      var a = A.areas[e.id];
+      return '<li><span class="t">' + esc(T.elements[e.id].area) + '</span><span class="l">' + esc(agreeLabel(a.max - a.min)) + '</span>' +
+        '<span class="track" aria-hidden="true"><span class="rng" style="left:' + a.min + '%;width:' + Math.max(1, a.max - a.min) + '%"></span><span class="avg" style="left:' + a.mean + '%"></span></span>' +
+        '<small>' + esc(fill(B.rangeText, { min: a.min, max: a.max })) + ' · Ø ' + a.mean + '</small></li>';
+    }).join('');
+    var chart = '<section class="itz-sec"><h2 class="itz-h2 itz-h2--sm">' + esc(B.spreadTitle) + '</h2><p class="itz-intro">' + esc(B.spreadText) + '</p>' +
+      '<div class="itz-team-grid itz-team-grid--2" style="align-items:center"><figure class="itz-radar">' + radarSvg({ per: A.mean }, A.ms.map(function (x) { return x.res.per; })) + '</figure><ul class="itz-spread">' + spread + '</ul></div></section>';
+    var dis = A.items.length ? '<ul class="itz-dis">' + A.items.map(function (it) {
+      var top = Math.max.apply(null, it.counts);
+      return '<li><p>' + esc(T.statements[it.q.id]) + '</p><div class="itz-dist">' + it.counts.map(function (c, k) {
+        return '<span class="' + (c && c === top ? 'on' : '') + '"><b>' + c + '</b>' + esc(B.dist[k]) + '</span>';
+      }).join('') + '</div></li>';
+    }).join('') + '</ul>' : '<p class="itz-intro">' + esc(B.noDis) + '</p>';
+    var disHtml = '<section class="itz-sec"><h2 class="itz-h2 itz-h2--sm">' + esc(B.disTitle) + '</h2><p class="itz-intro">' + esc(B.disText) + '</p>' + dis + '</section>';
+    var bk = C.elements.filter(function (e) { return e.id === A.widest.id; })[0];
+    var book = '<section class="itz-sec"><div class="itz-panel itz-team"><p>' + esc(fill(B.bookText, { area: T.elements[bk.id].area, chapter: bk.chapter, title: T.book.title })) + '</p>' +
+      '<div class="itz-teamfoot" style="margin-top:18px"><a class="itz-btn" target="_top" href="' + esc(shopLink(lang, 'team-' + lang)) + '">' + esc(B.bookButton) + ARROW + '</a></div></div></section>';
+    return typeHtml + chart + disHtml + book;
   }
-  function teamDialog() { return '<dialog class="itz-dialog" id="itz-tdlg" aria-labelledby="itz-tdlg-h"><div class="itz-dlg-in" id="itz-tdlg-in">' + teamDialogInner() + '</div></dialog>'; }
+  /* Teilen in die Team-Gruppe: Link mit allen Ergebnissen und Team-Code */
+  function teamShareHtml(id) {
+    var TM = T.team, link = teamLink(id);
+    return '<p class="itz-label" style="margin-top:20px">' + esc(TM.shareTitle) + '</p><p class="itz-intro" style="margin-top:4px">' + esc(TM.shareHint) + '</p>' +
+      shareRow(link, TM.groupSubject, fill(TM.groupBody, { link: link, code: teamCode(id) })) +
+      '<p class="itz-intro" style="margin-top:12px">' + esc(TM.codeTitle) + ': <b style="color:var(--goldl);letter-spacing:.08em">' + esc(teamCode(id)) + '</b></p>';
+  }
+  function teamStatus(t) {
+    var TM = T.team, n = (t.members || []).length;
+    return (n > 1 ? fill(TM.teamCount, { n: n }) : TM.teamCountOne) + (n < C.team.minMembers ? ' ' + TM.teamWait : '');
+  }
 
   function teamSec() {
-    var TM = T.team, teams = loadTeams(), t = state.leadTeam && teams[state.leadTeam], body;
-    if (state.invite && !t) {
-      var code = encodeResult(state.answers, state.role), link = boardLink(state.invite.id, state.invite.name, code), nm = teamName(state.invite, true);
-      body = '<h2 class="itz-h2 itz-h2--sm">' + esc(TM.sendTitle) + '</h2><p class="itz-intro">' + esc(TM.sendText) + '</p>' +
-        '<div class="itz-team-grid itz-team-grid--2"><div><p class="itz-label">' + esc(TM.codeLabel) + '</p><code class="itz-codebox">' + esc(code) + '</code></div>' +
-        '<div>' + shareRow(link, fill(TM.resultSubject, { name: nm }), fill(TM.resultBody, { link: link, code: code })) + '</div></div>';
-    } else if (t) {
-      var n = (t.members || []).length;
-      body = '<h2 class="itz-h2 itz-h2--sm">' + esc(fill(TM.leadTitle, { name: teamName(t, true) })) + '</h2><p class="itz-intro">' + esc(n > 1 ? fill(TM.leadText, { n: n }) : TM.leadTextOne) + '</p>' +
-        '<div class="itz-teamfoot" style="margin-top:22px">' +
-        '<button type="button" class="itz-btn" data-action="team-open">' + esc(TM.openBoardBtn) + ARROW + '</button>' +
-        '<button type="button" class="itz-btn itz-btn--line" data-action="team-new" aria-haspopup="dialog">' + esc(TM.inviteMore) + '</button></div>';
+    var TM = T.team, teams = loadTeams(), t = state.leadTeam && teams[state.leadTeam], body, extra = '';
+    if (t) {
+      body = '<h2 class="itz-h2 itz-h2--sm">' + esc(fill(TM.leadTitle, { name: teamName(t, true) })) + '</h2><p class="itz-intro">' + esc(teamStatus(t)) + '</p>' + teamShareHtml(state.leadTeam);
+      extra = teamAnalysisHtml(t);
     } else {
       body = '<h2 class="itz-h2 itz-h2--sm">' + esc(TM.newTitle) + '</h2><p class="itz-intro">' + esc(TM.newText) + '</p>' +
-        '<div class="itz-teamfoot" style="margin-top:22px"><button type="button" class="itz-btn" data-action="team-new" aria-haspopup="dialog">' + esc(TM.newButton) + ARROW + '</button></div>';
+        '<div class="itz-teamfoot" style="margin-top:22px"><button type="button" class="itz-btn" data-action="team-new">' + esc(TM.newButton) + ARROW + '</button></div>';
     }
-    return '<section class="itz-sec" id="itz-s-team"><div class="itz-panel itz-team">' + body + '</div></section>';
+    return '<div id="itz-s-team" class="itz-teamwrap"><section class="itz-sec"><div class="itz-panel itz-team">' + body + '</div></section>' + extra + '</div>';
   }
 
   function viewTeam(id) {
-    var TM = T.team, B = TM.board, teams = loadTeams(), team = teams[id] || { name: '', members: [] }, A = teamAnalysis(team);
-    var head = '<section class="itz-sec itz-sec--first itz-teamhead"><h1 class="itz-h2" id="itz-h" tabindex="-1">' + esc(B.title) + '</h1><p class="itz-tagline itz-serif">' + esc(teamName(team)) + '</p></section>';
-    var list = A.ms.map(function (x, k) {
-      var who = x.m.self ? B.you : fill(B.person, { n: k + 1 });
-      return '<li><span><b>' + esc(who) + '</b></span><button type="button" data-action="team-remove" data-idx="' + x.idx + '" aria-label="' + esc(fill(B.removeLabel, { who: who })) + '">' + esc(B.remove) + '</button></li>';
-    }).join('');
-    var members = '<section class="itz-sec"><div class="itz-team-grid itz-team-grid--2"><div><h2 class="itz-h2 itz-h2--sm">' + esc(B.members) + ' (' + A.n + ')</h2>' + (list ? '<ul class="itz-members">' + list + '</ul>' : '') +
-      '<form class="itz-form" data-form="team-add" novalidate><div class="itz-field"><label class="itz-label" for="itz-code-in">' + esc(B.addLabel) + '</label>' +
-      '<div class="itz-linkrow" style="margin-top:0"><input class="itz-linkbox" id="itz-code-in" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="' + esc(B.addPlaceholder) + '">' +
-      '<button type="submit" class="itz-btn itz-btn--sm">' + esc(B.add) + '</button></div></div>' +
-      '<p class="itz-status" id="itz-code-msg" role="status"' + (state.teamMsg ? '' : ' hidden') + '>' + esc(state.teamMsg || '') + '</p></form></div>' +
-      '<div><h2 class="itz-h2 itz-h2--sm">' + esc(B.inviteTitle) + '</h2><p class="itz-label" style="margin-top:14px">' + esc(TM.codeTitle) + '</p><code class="itz-codebox">' + esc(teamCode(id)) + '</code>' +
-      shareRow(inviteLink(id, team.name), TM.inviteSubject, fill(TM.inviteBody, { link: inviteLink(id, team.name), code: teamCode(id) })) + '</div></div></section>';
-    state.teamMsg = '';
-    var analysis = '';
-    if (A.n < C.team.minMembers) {
-      analysis = '<section class="itz-sec"><div class="itz-panel itz-team"><p>' + esc(B.empty) + '</p></div></section>';
-    } else {
-      var tt = T.types[A.type], sym = C.typing.symbols[A.type], pat = {};
-      C.elements.forEach(function (e) { pat[e.id] = levelNum(A.mean[e.id]); });
-      var w = A.areas[A.widest.id];
-      var typeHtml = '<section class="itz-sec"><h2 class="itz-h2 itz-h2--sm">' + esc(B.typeTitle) + '</h2><div class="itz-teamtype" style="margin-top:18px"><div class="itz-ship">' + shipSvg(pat, sym.mark) + '</div><div>' +
-        '<h3>' + esc(tt.name) + '</h3><p class="itz-serif" style="font-size:24px;color:var(--ivory)">' + esc(tt.tagline) + '</p><p>' + esc(fill(B.typeText, { n: A.n, type: tt.name })) + '</p>' +
-        (w.max - w.min > 35 ? '<p>' + esc(fill(B.typeWarn, { area: T.elements[A.widest.id].area })) + '</p>' : '') + '</div></div></section>';
-      var spread = C.elements.map(function (e) {
-        var a = A.areas[e.id];
-        return '<li><span class="t">' + esc(T.elements[e.id].area) + '</span><span class="l">' + esc(agreeLabel(a.max - a.min)) + '</span>' +
-          '<span class="track" aria-hidden="true"><span class="rng" style="left:' + a.min + '%;width:' + Math.max(1, a.max - a.min) + '%"></span><span class="avg" style="left:' + a.mean + '%"></span></span>' +
-          '<small>' + esc(fill(B.rangeText, { min: a.min, max: a.max })) + ' · Ø ' + a.mean + '</small></li>';
-      }).join('');
-      var chart = '<section class="itz-sec"><h2 class="itz-h2 itz-h2--sm">' + esc(B.spreadTitle) + '</h2><p class="itz-intro">' + esc(B.spreadText) + '</p>' +
-        '<div class="itz-team-grid itz-team-grid--2" style="align-items:center"><figure class="itz-radar">' + radarSvg({ per: A.mean }, A.ms.map(function (x) { return x.res.per; })) + '</figure><ul class="itz-spread">' + spread + '</ul></div></section>';
-      var dis = A.items.length ? '<ul class="itz-dis">' + A.items.map(function (it) {
-        var top = Math.max.apply(null, it.counts);
-        return '<li><p>' + esc(T.statements[it.q.id]) + '</p><div class="itz-dist">' + it.counts.map(function (c, k) {
-          return '<span class="' + (c && c === top ? 'on' : '') + '"><b>' + c + '</b>' + esc(B.dist[k]) + '</span>';
-        }).join('') + '</div></li>';
-      }).join('') + '</ul>' : '<p class="itz-intro">' + esc(B.noDis) + '</p>';
-      var disHtml = '<section class="itz-sec"><h2 class="itz-h2 itz-h2--sm">' + esc(B.disTitle) + '</h2><p class="itz-intro">' + esc(B.disText) + '</p>' + dis + '</section>';
-      var gap = '<section class="itz-sec"><h2 class="itz-h2 itz-h2--sm">' + esc(B.roleTitle) + '</h2><p class="itz-intro">' + esc(A.gap
-        ? (Math.abs(A.gap.diff) >= 10 ? fill(B.roleGap, { area: T.elements[A.gap.e.id].area, diff: Math.abs(A.gap.diff), dir: A.gap.diff > 0 ? B.higher : B.lower }) : B.roleSame)
-        : B.roleNote) + '</p></section>';
-      var bk = C.elements.filter(function (e) { return e.id === A.widest.id; })[0];
-      var book = '<section class="itz-sec"><div class="itz-panel itz-team"><p>' + esc(fill(B.bookText, { area: T.elements[bk.id].area, chapter: bk.chapter, title: T.book.title })) + '</p>' +
-        '<div class="itz-teamfoot" style="margin-top:18px"><a class="itz-btn" target="_top" href="' + esc(shopLink(lang, 'team-' + lang)) + '">' + esc(B.bookButton) + ARROW + '</a></div></div></section>';
-      analysis = typeHtml + chart + disHtml + book;
-    }
+    var TM = T.team, B = TM.board, teams = loadTeams(), team = teams[id] || { name: '', members: [] }, me = selfMember(team);
+    var n = (team.members || []).length;
+    var head = '<section class="itz-sec itz-sec--first itz-teamhead"><h1 class="itz-h2" id="itz-h" tabindex="-1">' + esc(B.title) + '</h1><p class="itz-tagline itz-serif">' + esc(teamName(team)) + '</p>' +
+      '<p class="itz-intro">' + esc(fill(B.count, { n: n })) + (n < C.team.minMembers ? ' ' + esc(TM.teamWait) : '') + '</p>' +
+      '<div class="itz-teamfoot" style="margin-top:22px">' + (me || answersDone()
+        ? '<button type="button" class="itz-btn itz-btn--line" data-action="team-back">' + esc(B.ownResult) + '</button>'
+        : '<button type="button" class="itz-btn" data-action="team-start">' + esc(B.join) + ARROW + '</button>') + '</div></section>';
+    var share = '<section class="itz-sec"><div class="itz-panel itz-team"><h2 class="itz-h2 itz-h2--sm">' + esc(B.inviteTitle) + '</h2>' + teamShareHtml(id) + '</div></section>';
     var foot = '<footer class="itz-foot"><p>' + esc(B.privacy) + '</p><div class="itz-teamfoot" style="margin-top:14px">' +
-      (answersDone() || selfMember(team) ? '<button type="button" class="itz-btn itz-btn--line" data-action="team-back">' + esc(B.ownResult) + '</button>' : '<button type="button" class="itz-btn" data-action="start">' + esc(B.takeTest) + ARROW + '</button>') +
       '<button type="button" class="itz-teamlink" style="margin:0" data-action="team-delete">' + esc(B.deleteTeam) + '</button></div></footer>';
-    return '<div class="itz-screen">' + viewTop() + head + members + analysis + foot + '</div>';
+    return '<div class="itz-screen">' + viewTop() + head + teamAnalysisHtml(team) + share + foot + '</div>';
   }
 
   /* ---------- Shop-Links ---------- */
@@ -2500,7 +2502,7 @@ var ITZ_ASSETS = {
     var foot = '<footer class="itz-foot"><p class="itz-disc">' + esc(F.disclaimer) + '</p><p>' + esc(F.sources) + '</p><p>' + esc(F.privacy) + '</p>' +
       '<button type="button" class="itz-btn itz-btn--line" data-action="restart">' + esc(F.restart) + '</button></footer>';
 
-    return '<div class="itz-screen">' + viewTop() + hero + navHtml + typeSec + profileSec + shareSec + elementsSec + (C.team.enabled ? teamSec() + teamDialog() : '') + bookSec + typesSec + news + method + foot + '</div>';
+    return '<div class="itz-screen">' + viewTop() + hero + navHtml + typeSec + profileSec + shareSec + elementsSec + (C.team.enabled ? teamSec() : '') + bookSec + typesSec + news + method + foot + '</div>';
   }
 
   /* ---------- Rendern ---------- */
@@ -2610,7 +2612,7 @@ var ITZ_ASSETS = {
     if (!el || !root.contains(el)) return;
     var a = el.getAttribute('data-action');
     if (a === 'start') {
-      if (C.team.enabled && state.screen === 'start' && !state.invite && root.querySelector('#itz-sdlg')) { openDialog(el, '#itz-sdlg'); var so = root.querySelector('#itz-sdlg [data-action="solo-start"]'); if (so) so.focus(); return; }
+      if (C.team.enabled && state.screen === 'start' && !state.invite && !state.leadTeam && root.querySelector('#itz-sdlg')) { openDialog(el, '#itz-sdlg'); var so = root.querySelector('#itz-sdlg [data-action="solo-start"]'); if (so) so.focus(); return; }
       go(el, function () { state.screen = 'question'; state.page = 0; render(); });
     }
     else if (a === 'solo-start') { closeDialog(); state.screen = 'question'; state.page = 0; render(); }
@@ -2646,21 +2648,15 @@ var ITZ_ASSETS = {
     else if (a === 'share-open') { ev.preventDefault(); openDialog(el.tagName === 'IMG' ? root.querySelector('.itz-share-actions .itz-btn') : el); }
     else if (a === 'dlg-close') closeDialog();
     else if (a === 'team-new') {
-      if (state.screen === 'result' && !state.leadTeam) { createTeam(''); refreshTeamSec(); }
-      var tin = root.querySelector('#itz-tdlg-in'); if (tin) tin.innerHTML = teamDialogInner();
-      openDialog(el, '#itz-tdlg');
-      var nm = root.querySelector('#itz-tname'); if (nm) nm.focus();
+      if (!state.leadTeam) createTeam('');
+      refreshTeamSec();
+      var cp = root.querySelector('#itz-s-team [data-action="copy-link"]'); if (cp) cp.focus();
     }
     else if (a === 'team-start') { closeDialog(); state.screen = 'question'; state.page = 0; render(); }
     else if (a === 'team-open') { closeDialog(); state.board = el.getAttribute('data-id') || state.leadTeam; state.leadTeam = state.board; state.screen = 'team'; render(); }
     else if (a === 'team-back') {
       if (!answersDone()) { var me = selfMember(loadTeams()[state.board]); if (me) { var dd = decodeResult(me.code); state.answers = dd.answers; state.role = dd.role; } }
       state.screen = 'result'; render();
-    }
-    else if (a === 'team-remove') {
-      var teams = loadTeams(), t = teams[state.board];
-      if (t) { var gone = t.members.splice(Number(el.getAttribute('data-idx')), 1)[0]; saveTeams(teams); }
-      render(false);
     }
     else if (a === 'team-delete') {
       if (!window.confirm(T.team.board.deleteAsk)) return;
@@ -2706,27 +2702,9 @@ var ITZ_ASSETS = {
       ev.preventDefault();
       var jin = form.querySelector('#itz-join'), jid = parseTeamCode(jin.value), jerr = form.querySelector('#itz-join-err');
       if (!jid) { jerr.hidden = false; jerr.textContent = T.team.joinError; jin.setAttribute('aria-invalid', 'true'); jin.focus(); return; }
-      if (loadTeams()[jid]) state.leadTeam = jid;
-      else { state.invite = { id: jid, name: '' }; try { sessionStorage.setItem('itz-einladung', JSON.stringify(state.invite)); } catch (e) {} }
+      var jt = loadTeams(); if (!jt[jid]) { jt[jid] = { name: '', created: Date.now(), members: [] }; saveTeams(jt); }
+      state.leadTeam = jid; state.invite = { id: jid, name: jt[jid].name || '' };
       closeDialog(); state.screen = 'question'; state.page = 0; render();
-      return;
-    }
-    if (kind === 'team-create') {
-      ev.preventDefault();
-      createTeam(form.querySelector('#itz-tname').value);
-      root.querySelector('#itz-tdlg-in').innerHTML = teamDialogInner();
-      var first = root.querySelector('#itz-tdlg [data-action="copy-link"]'); if (first) first.focus();
-      if (state.screen === 'result') refreshTeamSec();
-      else { var tl = root.querySelector('.itz-hero-text .itz-teamlink'); if (!tl) { var box = root.querySelector('.itz-hero-actions'); if (box) box.insertAdjacentHTML('afterend', teamLinkHtml()); } }
-      return;
-    }
-    if (kind === 'team-add') {
-      ev.preventDefault();
-      var input = form.querySelector('#itz-code-in'), d = decodeResult(input.value), teams = loadTeams(), t = teams[state.board];
-      if (!d || !t) { var msg = form.querySelector('#itz-code-msg'); msg.hidden = false; msg.textContent = T.team.board.invalid; input.setAttribute('aria-invalid', 'true'); input.focus(); return; }
-      state.teamMsg = T.team.board[addMember(t, d)];
-      saveTeams(teams); render(false);
-      var again = root.querySelector('#itz-code-in'); if (again) again.focus();
       return;
     }
     if (form.getAttribute('data-form') !== 'newsletter') return;
