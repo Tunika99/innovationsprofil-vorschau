@@ -1,0 +1,32 @@
+# Hält das kostenlose Supabase-Projekt der Team-Runde aktiv.
+# Supabase pausiert kostenlose Projekte nach einer Woche ohne Nutzung.
+# Dieser Ablauf fragt die Datenbank zweimal pro Woche einmal ab.
+name: Supabase wach halten
+on:
+  schedule:
+    - cron: '17 6 * * 1,4'   # Montag und Donnerstag, 6:17 Uhr UTC
+  workflow_dispatch:          # zum Testen von Hand auslösen
+permissions:
+  actions: write
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Datenbank abfragen
+        env:
+          URL: https://yjsjhdffjteyrakwpwce.supabase.co/rest/v1/rpc
+          KEY: sb_publishable_LpswyLWo_B5LAcpQoRrwsw_B4yvvGcx
+        run: |
+          # Ein fester Eintrag im Team WACHHALT, wird jedes Mal überschrieben
+          w=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/itz_team_join" -H "apikey: $KEY" -H "Content-Type: application/json" \
+            -d '{"p_team":"WACHHALT","p_member":"wachhaltenwachhalten","p_code":"000000000000"}')
+          r=$(curl -s -o /dev/null -w '%{http_code}' -X POST "$URL/itz_team_codes" -H "apikey: $KEY" -H "Content-Type: application/json" \
+            -d '{"p_team":"WACHHALT"}')
+          echo "Schreiben: $w, Lesen: $r"
+          test "$w" = 204 -o "$w" = 200
+          test "$r" = 200
+      - name: Zeitplan aktiv halten
+        # GitHub schaltet Zeitpläne ab, wenn ein Repository 60 Tage ruht. Das Einschalten setzt die Frist zurück.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/wachhalten.yml/enable"
