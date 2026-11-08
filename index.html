@@ -648,7 +648,7 @@ var ITZ_CONFIG = {
   /* Team-Runde: Kolleg:innen einladen und Einschätzungen vergleichen.
      Es gibt keinen Server: Jede Person schickt einen kurzen Code ohne Namen,
      die Auswertung entsteht im Browser der einladenden Person. */
-  team: { enabled: true, minMembers: 3, storageKey: 'itz-teamrunden' },
+  team: { enabled: true, minMembers: 2, storageKey: 'itz-teamrunden' },
 
   /* Auswertung. Jede Antwort zählt 0, 25, 50, 75 oder 100 Punkte. */
   levels: { low: 45, high: 70 },   // unter 45: Entwicklungsfeld, ab 70: Stärke
@@ -978,7 +978,7 @@ var ITZ_CONFIG = {
           leadTitle: 'Ihre Team-Runde{name}',
           teamCount: 'Bisher {n} Teilnahmen, Ihre eingeschlossen.',
           teamCountOne: 'Bisher ist nur Ihr eigenes Ergebnis dabei.',
-          teamWait: 'Die Team-Auswertung erscheint ab drei Teilnahmen, damit niemand Einzelne erkennen kann.',
+          teamWait: 'Die Team-Auswertung erscheint, sobald eine zweite Person mitgemacht hat.',
           shareTitle: 'So kommen alle zur Auswertung',
           shareHint: 'Teilen Sie den Link in Ihrer Team-Gruppe, etwa in Teams, Slack oder WhatsApp. Wer ihn öffnet, sieht die Auswertung und kann selbst mitmachen. Danach teilt jede Person den Link aus ihrem Ergebnis wieder in der Gruppe. So wächst die Auswertung mit jeder Teilnahme.',
           groupSubject: 'Unsere Team-Auswertung: Wie innovationsfähig ist unser Unternehmen?',
@@ -1347,7 +1347,7 @@ var ITZ_CONFIG = {
           leadTitle: 'Your team round{name}',
           teamCount: 'So far {n} people have taken part, including you.',
           teamCountOne: 'So far only your own result is included.',
-          teamWait: 'The team results appear from three participants on, so that nobody can be identified.',
+          teamWait: 'The team results appear as soon as a second person has taken part.',
           shareTitle: 'How everyone gets to the results',
           shareHint: 'Share the link in your team group, for example in Teams, Slack or WhatsApp. Anyone who opens it sees the results and can take part. Afterwards each person shares the link from their own result in the group again. That way the results grow with every participant.',
           groupSubject: 'Our team results: how innovative is our company?',
