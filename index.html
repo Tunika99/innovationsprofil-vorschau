@@ -2185,9 +2185,8 @@ var ITZ_ASSETS = {
     var TM = T.team;
     return '<div class="itz-linkrow"><input class="itz-linkbox" readonly value="' + esc(link) + '" aria-label="' + esc(TM.linkLabel) + '">' +
       '<button type="button" class="itz-btn itz-btn--sm" data-action="copy-link" data-link="' + esc(link) + '">' + esc(TM.copyLink) + '</button></div>' +
-      '<div class="itz-dlg-row"><a class="itz-btn itz-btn--line itz-btn--sm" href="mailto:?subject=' + encodeURIComponent(subject) + '&amp;body=' + encodeURIComponent(body) + '">' + esc(TM.mail) + '</a>' +
-      '<a class="itz-btn itz-btn--line itz-btn--sm" href="https://wa.me/?text=' + encodeURIComponent(body) + '" target="_blank" rel="noopener noreferrer">' + esc(TM.whatsapp) + '</a>' +
-      (navigator.share ? '<button type="button" class="itz-btn itz-btn--line itz-btn--sm" data-action="native-link" data-link="' + esc(link) + '" data-title="' + esc(subject) + '">' + esc(TM.shareNative) + '</button>' : '') + '</div>';
+      /* Am Handy zusätzlich das Teilen-Menü des Geräts, am Rechner nur Link kopieren */
+      (navigator.share && window.matchMedia && matchMedia('(pointer: coarse)').matches ? '<div class="itz-dlg-row"><button type="button" class="itz-btn itz-btn--line itz-btn--sm" data-action="native-link" data-link="' + esc(link) + '" data-title="' + esc(subject) + '">' + esc(TM.shareNative) + '</button></div>' : '');
   }
   function roleSelect() {
     var TM = T.team;
