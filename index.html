@@ -387,6 +387,8 @@
   #itz .itz-select { min-height: 48px; max-width: 100%; padding: 0 14px; border: 1.5px solid #3A3E46; border-radius: 14px; background: var(--bg); color: var(--ivory); font: 400 15px var(--sans); }
   #itz .itz-team { padding: 32px 34px 34px; }
   #itz .itz-teamwrap { scroll-margin-top: 76px; }
+  #itz .itz-teamhead .itz-btn { white-space: nowrap; }
+  @media (max-width: 420px) { #itz .itz-teamhead .itz-btn { letter-spacing: .08em; padding-left: 22px; padding-right: 22px; } }
   #itz .itz-team .itz-intro { margin-top: 8px; }
   #itz .itz-team-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; margin-top: 22px; }
   #itz .itz-codebox { display: block; margin-top: 6px; font-family: var(--cond); font-weight: 600; font-size: 34px; line-height: 1.1; letter-spacing: .1em; color: var(--goldl); }
@@ -976,13 +978,13 @@ var ITZ_CONFIG = {
           resultSubject: 'Mein Ergebnis für die Team-Runde{name}',
           resultBody: 'Hier ist mein Ergebnis aus dem Innovations-Selbsttest. Ein Klick auf den Link fügt es der Team-Auswertung hinzu:\n{link}\n\nCode: {code}',
           leadTitle: 'Ihre Team-Runde{name}',
-          teamCount: 'Bisher {n} Teilnahmen, Ihre eingeschlossen.',
-          teamCountOne: 'Bisher ist nur Ihr eigenes Ergebnis dabei.',
-          teamWait: 'Die Team-Auswertung erscheint, sobald eine zweite Person mitgemacht hat.',
-          shareTitle: 'So kommen alle zur Auswertung',
-          shareHint: 'Teilen Sie den Link in Ihrer Team-Gruppe, etwa in Teams, Slack oder WhatsApp. Wer ihn öffnet, sieht die Auswertung und kann selbst mitmachen. Danach teilt jede Person den Link aus ihrem Ergebnis wieder in der Gruppe. So wächst die Auswertung mit jeder Teilnahme.',
-          groupSubject: 'Unsere Team-Auswertung: Wie innovationsfähig ist unser Unternehmen?',
-          groupBody: 'Unsere Team-Auswertung zum Innovationsprofil: Link öffnen, den Test machen (ca. 5 Minuten, anonym) und danach den Link aus dem eigenen Ergebnis wieder hier teilen. So sehen alle die gemeinsame Auswertung. Team-Code: {code}\n{link}',
+          teamCount: 'Bisher liegen {n} Teilnahmen vor, Ihre eigene eingeschlossen.',
+          teamCountOne: 'Aktuell fließt ausschließlich Ihr persönliches Ergebnis in die Auswertung ein.',
+          teamWait: 'Die aggregierte Team-Auswertung wird freigeschaltet, sobald das Ergebnis einer weiteren Person vorliegt.',
+          shareTitle: 'So laden Sie Ihr Team zur Auswertung ein',
+          shareHint: 'Teilen Sie diesen Link in Ihrem bevorzugten Kommunikationskanal (z. B. MS Teams, Slack oder WhatsApp). Jeder Aufruf ermöglicht den Einblick in den aktuellen Stand sowie die eigene Teilnahme. Im Anschluss teilt jede teilnehmende Person den neu generierten Link aus ihrem Ergebnis wiederum in der Gruppe. Auf diese Weise aktualisiert und erweitert sich die Team-Auswertung mit jeder neuen Teilnahme.',
+          groupSubject: 'Einladung zur Team-Auswertung: Wie innovationsfähig ist unser Unternehmen?',
+          groupBody: 'Wir ermitteln unser gemeinsames Innovationsprofil: Bitte öffnen Sie den Link und absolvieren Sie den anonymen Test (Dauer ca. 5 Minuten). Teilen Sie im Anschluss den Link aus Ihrem persönlichen Ergebnis wieder hier in der Gruppe. So wächst unsere Auswertung Stück für Stück zusammen. Ihr Team-Code lautet: {code}\n{link}',
           leadText: 'Bisher liegen {n} Ergebnisse vor, Ihres eingeschlossen.',
           leadTextOne: 'Bisher liegt nur Ihr eigenes Ergebnis vor. Laden Sie Kolleg:innen ein, damit ein Vergleich entsteht.',
           inviteMore: 'Kolleg:innen einladen',
@@ -991,8 +993,9 @@ var ITZ_CONFIG = {
           newButton: 'Team-Runde starten',
           board: {
             title: 'Team-Auswertung',
-            count: '{n} Teilnahmen bisher.',
-            join: 'Jetzt selbst mitmachen',
+            count: 'Bisher {n} erfasste Teilnahmen.',
+            countOne: 'Bisher eine erfasste Teilnahme.',
+            join: 'Jetzt selbst teilnehmen',
             unnamed: 'Team-Runde',
             members: 'Ergebnisse in dieser Runde',
             you: 'Sie',
@@ -1006,7 +1009,7 @@ var ITZ_CONFIG = {
             duplicate: 'Dieser Code ist schon in der Auswertung.',
             invalid: 'Dieser Code ist unvollständig oder falsch. Prüfen Sie, ob er ganz kopiert wurde.',
             empty: 'Sobald mindestens zwei Ergebnisse vorliegen, sehen Sie hier den Vergleich.',
-            inviteTitle: 'Link weitergeben',
+            inviteTitle: 'Einladungslink teilen',
             typeTitle: 'Ihr Team als Ganzes',
             typeText: 'Aus dem Durchschnitt der {n} Ergebnisse ergibt sich der Typ „{type}“.',
             typeWarn: 'Im Bereich {area} liegen die Einschätzungen so weit auseinander, dass der Durchschnitt dort wenig aussagt.',
@@ -1030,7 +1033,7 @@ var ITZ_CONFIG = {
             bookButton: 'Zum Buch',
             ownResult: 'Zu meinem Ergebnis',
             takeTest: 'Test selbst machen',
-            privacy: 'Die Ergebnisse stecken im Link selbst und werden nur in Ihrem Browser gespeichert. Namen werden nicht übertragen.',
+            privacy: 'Datenschutzhinweis: Alle Ergebnisse sind ausschließlich in diesem Link kodiert und werden lokal in Ihrem Browser verarbeitet. Es findet keine Übertragung von Namen oder personenbezogenen Daten statt.',
             deleteTeam: 'Team-Runde löschen',
             deleteAsk: 'Diese Team-Runde mit allen Ergebnissen löschen?'
           }
@@ -1346,12 +1349,12 @@ var ITZ_CONFIG = {
           resultBody: 'Here is my result from the innovation self-assessment. One click on the link adds it to the team results:\n{link}\n\nCode: {code}',
           leadTitle: 'Your team round{name}',
           teamCount: 'So far {n} people have taken part, including you.',
-          teamCountOne: 'So far only your own result is included.',
-          teamWait: 'The team results appear as soon as a second person has taken part.',
-          shareTitle: 'How everyone gets to the results',
-          shareHint: 'Share the link in your team group, for example in Teams, Slack or WhatsApp. Anyone who opens it sees the results and can take part. Afterwards each person shares the link from their own result in the group again. That way the results grow with every participant.',
-          groupSubject: 'Our team results: how innovative is our company?',
-          groupBody: 'Our team results for the innovation profile: open the link, take the test (about 5 minutes, anonymous) and then share the link from your own result here again. That way everyone sees the shared results. Team code: {code}\n{link}',
+          teamCountOne: 'At the moment only your own result is included in the analysis.',
+          teamWait: 'The combined team results are unlocked as soon as a second person has taken part.',
+          shareTitle: 'How to invite your team to the analysis',
+          shareHint: 'Share this link in your preferred channel (for example MS Teams, Slack or WhatsApp). Anyone who opens it sees the current state and can take part. Afterwards each participant shares the newly generated link from their own result in the group again. That way the team results are updated and extended with every new participant.',
+          groupSubject: 'Invitation to our team analysis: how innovative is our company?',
+          groupBody: 'We are building our shared innovation profile: please open the link and take the anonymous test (about 5 minutes). Afterwards share the link from your own result here in the group again. That way our analysis grows step by step. Your team code is: {code}\n{link}',
           leadText: 'So far there are {n} results, including yours.',
           leadTextOne: 'So far only your own result is in. Invite colleagues so that a comparison can emerge.',
           inviteMore: 'Invite colleagues',
@@ -1360,7 +1363,8 @@ var ITZ_CONFIG = {
           newButton: 'Start a team round',
           board: {
             title: 'Team results',
-            count: '{n} participants so far.',
+            count: '{n} participants recorded so far.',
+            countOne: 'One participant recorded so far.',
             join: 'Take part now',
             unnamed: 'Team round',
             members: 'Results in this round',
@@ -1375,7 +1379,7 @@ var ITZ_CONFIG = {
             duplicate: 'This code is already in the results.',
             invalid: 'This code is incomplete or wrong. Check that it was copied in full.',
             empty: 'As soon as there are at least two results, the comparison appears here.',
-            inviteTitle: 'Pass the link on',
+            inviteTitle: 'Share the invitation link',
             typeTitle: 'Your team as a whole',
             typeText: 'The average of the {n} results gives the type “{type}”.',
             typeWarn: 'In {area}, the ratings are so far apart that the average says little there.',
@@ -1399,7 +1403,7 @@ var ITZ_CONFIG = {
             bookButton: 'To the book',
             ownResult: 'Back to my result',
             takeTest: 'Take the test',
-            privacy: 'The results are contained in the link itself and stored only in your browser. No names are transmitted.',
+            privacy: 'Privacy note: all results are encoded only in this link and processed locally in your browser. No names or personal data are transmitted.',
             deleteTeam: 'Delete team round',
             deleteAsk: 'Delete this team round and all its results?'
           }
@@ -2201,7 +2205,7 @@ var ITZ_ASSETS = {
     var TM = T.team, B = TM.board, teams = loadTeams(), team = teams[id] || { name: '', members: [] }, me = selfMember(team);
     var n = (team.members || []).length;
     var head = '<section class="itz-sec itz-sec--first itz-teamhead"><h1 class="itz-h2" id="itz-h" tabindex="-1">' + esc(B.title) + '</h1><p class="itz-tagline itz-serif">' + esc(teamName(team)) + '</p>' +
-      '<p class="itz-intro">' + esc(fill(B.count, { n: n })) + (n < C.team.minMembers ? ' ' + esc(TM.teamWait) : '') + '</p>' +
+      '<p class="itz-intro">' + esc(n === 1 ? B.countOne : fill(B.count, { n: n })) + (n < C.team.minMembers ? ' ' + esc(TM.teamWait) : '') + '</p>' +
       '<div class="itz-teamfoot" style="margin-top:22px">' + (me || answersDone()
         ? '<button type="button" class="itz-btn itz-btn--line" data-action="team-back">' + esc(B.ownResult) + '</button>'
         : '<button type="button" class="itz-btn" data-action="team-start">' + esc(B.join) + ARROW + '</button>') + '</div></section>';
