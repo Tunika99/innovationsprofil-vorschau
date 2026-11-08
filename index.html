@@ -558,6 +558,20 @@
   #itz .itz-btn--li { min-height: 64px; font-size: 22px; }
   #itz .itz-btn--li svg { width: 22px; height: 22px; }
   #itz .itz-quick-note { padding: 12px 16px; border-radius: 16px; background: rgba(230,196,127,.08); border: 1px solid var(--line2); font-size: 15px; line-height: 1.5; color: var(--ivory); }
+  /* Ergebnisseite: aufrechte Schrift statt kursiv */
+  #itz .itz-rhero .itz-tagline, #itz .itz-types .itz-serif, #itz .itz-teamhead .itz-serif, #itz .itz-teamtype .itz-serif { font-family: var(--sans); font-style: normal; font-weight: 400; }
+  #itz .itz-rhero .itz-tagline { font-size: 26px; line-height: 1.35; color: var(--soft); }
+  #itz .itz-types .itz-serif { font-size: 15px; }
+  /* Ergebnisseite: offene Elemente statt Kästen */
+  #itz .itz-avatar { background: none; border: 0; border-radius: 0; padding: 0; }
+  #itz .itz-avatar figcaption { font-size: 14px; }
+  #itz .itz-next { background: none; border: 0; border-radius: 0; padding: 26px 0 0; border-top: 1px solid var(--line2); }
+  #itz .itz-next p { font-size: 21px; line-height: 1.5; color: var(--ivory); }
+  #itz .itz-kpis { gap: 0; margin-top: 30px; }
+  #itz .itz-kpi { background: none; border: 0; border-radius: 0; padding: 2px 28px 4px; border-left: 1px solid var(--line2); }
+  #itz .itz-kpi:first-child { padding-left: 0; border-left: 0; }
+  #itz .itz-kpi b { font-size: clamp(52px, 7vw, 84px); }
+  @media (max-width: 819px) { #itz .itz-kpi { padding: 0 12px; } #itz .itz-kpi small { font-size: 12px; } }
   @media (prefers-reduced-motion: reduce) {
     #itz .itz-step:hover, #itz .itz-area:hover, #itz .itz-tease li:hover, #itz .itz-types li:hover, #itz .itz-ship svg, #itz .itz-course li:hover .itz-wp, #itz .itz-anat-list li:hover { transform: none !important; }
     #itz .itz-screen { animation: none; }
@@ -1022,7 +1036,7 @@ var ITZ_CONFIG = {
         },
         footer: {
           disclaimer: 'Dieser Test dient der Orientierung und ersetzt keine wissenschaftliche Analyse.',
-          sources: 'Die Aussagen sind an die Checklisten des Buches „Innovation ist kein Zufall“ von Nikolaus Franke und Rudolf Dömötör angelehnt. Alle Kennzahlen stammen aus diesem Buch.',
+          sources: 'Die Aussagen sind an die Checklisten des Buches „Innovation ist kein Zufall“ von Nikolaus Franke und Rudolf Dömötör angelehnt. Alle Kennzahlen stammen aus diesem Buch (S. 23, 52, 66, 78, 98, 112, 122, 150, 204, 224).',
           privacy: 'Ihre Antworten bleiben in Ihrem Browser. Es werden keine Cookies gesetzt und keine Daten übertragen.',
           restart: 'Test neu starten'
         }
@@ -2370,7 +2384,7 @@ var ITZ_ASSETS = {
   /* ---------- Ergebnis ---------- */
   function viewResult(res) {
     var R = T.result, type = T.types[res.type], sym = C.typing.symbols[res.type], nm = splitName(type.name), mine = personalPattern(res);
-    var nav = [['itz-s-type', R.nav.type], ['itz-s-profile', R.nav.profile], ['itz-s-share', R.nav.share], ['itz-s-elements', R.nav.elements]].concat(C.team.enabled ? [['itz-s-team', T.team.nav]] : []).concat([['itz-s-book', R.nav.book], ['itz-s-types', R.nav.types], ['itz-s-bench', R.nav.bench]]);
+    var nav = [['itz-s-type', R.nav.type], ['itz-s-profile', R.nav.profile], ['itz-s-share', R.nav.share], ['itz-s-elements', R.nav.elements]].concat(C.team.enabled ? [['itz-s-team', T.team.nav]] : []).concat([['itz-s-book', R.nav.book], ['itz-s-types', R.nav.types]]);
 
     var hero = '<section class="itz-rhero" aria-labelledby="itz-h"><div class="itz-burst">' + burstSvg('result', { seed: 3, rings: 10, rays: 110, dots: 190, flare: false }) + '</div>' +
       '<div class="itz-rgrid"><div>' +
@@ -2484,7 +2498,7 @@ var ITZ_ASSETS = {
     var foot = '<footer class="itz-foot"><p class="itz-disc">' + esc(F.disclaimer) + '</p><p>' + esc(F.sources) + '</p><p>' + esc(F.privacy) + '</p>' +
       '<button type="button" class="itz-btn itz-btn--line" data-action="restart">' + esc(F.restart) + '</button></footer>';
 
-    return '<div class="itz-screen">' + viewTop() + hero + navHtml + typeSec + profileSec + shareSec + elementsSec + (C.team.enabled ? teamSec() + teamDialog() : '') + bookSec + typesSec + benchSec + news + method + foot + '</div>';
+    return '<div class="itz-screen">' + viewTop() + hero + navHtml + typeSec + profileSec + shareSec + elementsSec + (C.team.enabled ? teamSec() + teamDialog() : '') + bookSec + typesSec + news + method + foot + '</div>';
   }
 
   /* ---------- Rendern ---------- */
