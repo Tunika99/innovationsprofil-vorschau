@@ -650,10 +650,12 @@ var ITZ_CONFIG = {
   /* Team-Runde: Kolleg:innen einladen und Einschätzungen vergleichen.
      Es gibt keinen Server: Jede Person schickt einen kurzen Code ohne Namen,
      die Auswertung entsteht im Browser der einladenden Person. */
-  team: { enabled: true, minMembers: 2, storageKey: 'itz-teamrunden' },
+  team: { enabled: true, minMembers: 2, storageKey: 'itz-teamrunden',
+    /* Server für die Team-Runde (Supabase). Der Schlüssel ist öffentlich gedacht, die Tabelle ist nur über zwei Funktionen erreichbar (supabase/team.sql). */
+    server: { url: 'https://yjsjhdffjteyrakwpwce.supabase.co', key: 'sb_publishable_LpswyLWo_B5LAcpQoRrwsw_B4yvvGcx' } },
 
   /* Auswertung. Jede Antwort zählt 0, 25, 50, 75 oder 100 Punkte. */
-  levels: { low: 45, high: 70 },   // unter 45: Entwicklungsfeld, ab 70: Stärke
+  levels: { low: 45, high: 70 },   // unter 45: Wachstumsbereich, ab 70: Stärke
 
   /* Innovationstypen. Rahmen = Führung + Organisation, Impulse = Kultur + Außenorientierung. */
   typing: {
@@ -749,7 +751,7 @@ var ITZ_CONFIG = {
           typesKicker: 'Am Ende',
           typesTitle: 'Welcher Innovationstyp ist Ihr Unternehmen?',
           typesIntro: 'Jedes Unternehmen hat individuelle Stärken und Schwächen und entspricht meist einem von fünf groben Typen.',
-          privacy: 'Ihre Antworten werden ausschließlich lokal in Ihrem Browser verarbeitet, sodass alle Daten vollständig auf Ihrem Gerät verbleiben.'
+          privacy: 'Ihre Antworten werden lokal in Ihrem Browser verarbeitet. Nur in einer Team-Runde wird Ihr Antwortmuster ohne Namen für die gemeinsame Auswertung gespeichert.'
         },
         scale: ['Trifft gar nicht zu', 'Trifft eher nicht zu', 'Teils, teils', 'Trifft eher zu', 'Trifft voll zu'],
         statements: {
@@ -802,7 +804,7 @@ var ITZ_CONFIG = {
           elementsTitle: 'Die vier Bereiche im Einzelnen',
           elementsIntro: 'Zu jedem Bereich eine kurze Einordnung und ein Ansatzpunkt für den Anfang.',
           tipLabel: 'Ansatzpunkt',
-          levelLabels: { low: 'Entwicklungsfeld', mid: 'Solide Basis', high: 'Stärke' },
+          levelLabels: { low: 'Wachstumsbereich', mid: 'Solide Basis', high: 'Stärke' },
           typesKicker: 'Alle Typen',
           typesTitle: 'Die fünf Innovationstypen',
           typesIntro: 'Jeder Typ beschreibt ein typisches Muster der vier Bereiche. Das Schiff zeigt dieses Muster.',
@@ -982,9 +984,9 @@ var ITZ_CONFIG = {
           teamCountOne: 'Aktuell fließt ausschließlich Ihr persönliches Ergebnis in die Auswertung ein.',
           teamWait: 'Die aggregierte Team-Auswertung wird freigeschaltet, sobald das Ergebnis einer weiteren Person vorliegt.',
           shareTitle: 'So laden Sie Ihr Team zur Auswertung ein',
-          shareHint: 'Teilen Sie diesen Link in Ihrem bevorzugten Kommunikationskanal (z. B. MS Teams, Slack oder WhatsApp). Jeder Aufruf ermöglicht den Einblick in den aktuellen Stand sowie die eigene Teilnahme. Im Anschluss teilt jede teilnehmende Person den neu generierten Link aus ihrem Ergebnis wiederum in der Gruppe. Auf diese Weise aktualisiert und erweitert sich die Team-Auswertung mit jeder neuen Teilnahme.',
+          shareHint: 'Teilen Sie diesen Link in Ihrem bevorzugten Kommunikationskanal (z. B. MS Teams, Slack oder WhatsApp). Jeder Aufruf ermöglicht den Einblick in den aktuellen Stand sowie die eigene Teilnahme. Jede neue Teilnahme fließt automatisch in die Team-Auswertung ein.',
           groupSubject: 'Einladung zur Team-Auswertung: Wie innovationsfähig ist unser Unternehmen?',
-          groupBody: 'Wir ermitteln unser gemeinsames Innovationsprofil: Bitte öffnen Sie den Link und absolvieren Sie den anonymen Test (Dauer ca. 5 Minuten). Teilen Sie im Anschluss den Link aus Ihrem persönlichen Ergebnis wieder hier in der Gruppe. So wächst unsere Auswertung Stück für Stück zusammen. Ihr Team-Code lautet: {code}\n{link}',
+          groupBody: 'Wir ermitteln unser gemeinsames Innovationsprofil: Bitte öffnen Sie den Link und absolvieren Sie den anonymen Test (Dauer ca. 5 Minuten). Jede Teilnahme fließt automatisch in unsere gemeinsame Auswertung ein. Ihr Team-Code lautet: {code}\n{link}',
           leadText: 'Bisher liegen {n} Ergebnisse vor, Ihres eingeschlossen.',
           leadTextOne: 'Bisher liegt nur Ihr eigenes Ergebnis vor. Laden Sie Kolleg:innen ein, damit ein Vergleich entsteht.',
           inviteMore: 'Kolleg:innen einladen',
@@ -1033,7 +1035,7 @@ var ITZ_CONFIG = {
             bookButton: 'Zum Buch',
             ownResult: 'Zu meinem Ergebnis',
             takeTest: 'Test selbst machen',
-            privacy: 'Datenschutzhinweis: Alle Ergebnisse sind ausschließlich in diesem Link kodiert und werden lokal in Ihrem Browser verarbeitet. Es findet keine Übertragung von Namen oder personenbezogenen Daten statt.',
+            privacy: 'Datenschutzhinweis: Für die Team-Auswertung wird je Teilnahme nur das Antwortmuster gespeichert, ohne Namen oder andere personenbezogene Daten.',
             deleteTeam: 'Team-Runde löschen',
             deleteAsk: 'Diese Team-Runde mit allen Ergebnissen löschen?'
           }
@@ -1044,7 +1046,7 @@ var ITZ_CONFIG = {
           points: 'Ihre Antworten werden basierend auf folgendem Schlüssel bewertet: {list}.',
           pointItem: '„{label}“: {points} Punkte',
           average: 'Die Bewertung eines jeden Bereichs ergibt sich aus dem Durchschnitt der fünf zugehörigen Aussagen. Das Gesamtergebnis bildet den Mittelwert aller vier Bereiche ab.',
-          levels: 'Ein Wert ab {high} Punkten klassifiziert einen Bereich als Stärke, während Werte unter {low} Punkten ein Entwicklungsfeld aufzeigen. Das dazwischenliegende Spektrum repräsentiert eine solide Basis.',
+          levels: 'Ein Wert ab {high} Punkten klassifiziert einen Bereich als Stärke, während Werte unter {low} Punkten einen Wachstumsbereich aufzeigen. Das dazwischenliegende Spektrum repräsentiert eine solide Basis.',
           typing: 'Für die Typisierung werden jeweils zwei Handlungsfelder gebündelt: „Führung“ und „Organisation“ definieren den strukturellen Rahmen, während „Kultur“ und „Außenorientierung“ als Impulsgeber fungieren. Erzielen beide Cluster mindestens {high} Punkte, resultiert daraus der Typus „{systematiker}“. Liegen beide unter {low} Punkten, entspricht dies dem Typus „{bewahrer}“. Übersteigt der Wert des Rahmens den der Impulsgeber um mindestens {gap} Punkte, ergibt sich der Typus „{umsetzer}“; im umgekehrten Fall der Typus „{entdecker}“. Alle davon abweichenden Konstellationen definieren den Typus „{verbesserer}“.',
           sources: 'Die vier analysierten Bereiche basieren auf dem Fachbuch „Innovation ist kein Zufall“. Dabei leiten sich zwölf der zwanzig Aussagen aus den Checklisten des Werks ab, während die verbleibenden acht der inhaltlichen Argumentation der Kapitel folgen. Die fünf definierten Typologien sowie die zugehörigen Schwellenwerte wurden spezifisch für dieses Assessment konzipiert und bislang noch nicht empirisch an Unternehmensdaten validiert.',
           limits: 'Bitte beachten Sie: Das vorliegende Resultat basiert auf einer individuellen Selbsteinschätzung. Es ist naturgemäß subjektiv und lässt sich nicht unmittelbar mit den objektiven Kennzahlen der TOP 100 vergleichen.'
@@ -1052,7 +1054,7 @@ var ITZ_CONFIG = {
         footer: {
           disclaimer: 'Dieser Test dient der Orientierung und ersetzt keine wissenschaftliche Analyse.',
           sources: 'Die Aussagen sind an die Checklisten des Buches „Innovation ist kein Zufall“ von Nikolaus Franke und Rudolf Dömötör angelehnt. Alle Kennzahlen stammen aus diesem Buch (S. 23, 52, 66, 78, 98, 112, 122, 150, 204, 224).',
-          privacy: 'Datenschutz: Ihre Eingaben werden ausschließlich lokal in Ihrem Browser verarbeitet. Auf den Einsatz von Cookies sowie jegliche Art der Datenübertragung wird vollständig verzichtet.',
+          privacy: 'Datenschutz: Ihre Eingaben werden lokal in Ihrem Browser verarbeitet. Es werden keine Cookies gesetzt. Nur wenn Sie an einer Team-Runde teilnehmen, wird Ihr Antwortmuster ohne Namen gespeichert, damit Ihr Team die gemeinsame Auswertung sieht.',
           restart: 'Test neu starten'
         }
       }
@@ -1119,7 +1121,7 @@ var ITZ_CONFIG = {
           typesKicker: 'At the end',
           typesTitle: 'Which innovation type is your company?',
           typesIntro: 'Every company has its own strengths and weaknesses and usually matches one of five broad types.',
-          privacy: 'Your answers are processed only locally in your browser, so all data stays on your device.'
+          privacy: 'Your answers are processed locally in your browser. Only in a team round is your answer pattern stored, without your name, for the shared results.'
         },
         scale: ['Not true at all', 'Mostly not true', 'Partly true', 'Mostly true', 'Completely true'],
         statements: {
@@ -1172,7 +1174,7 @@ var ITZ_CONFIG = {
           elementsTitle: 'The four areas in detail',
           elementsIntro: 'For each area you will find a short assessment and a starting point for action.',
           tipLabel: 'Starting point',
-          levelLabels: { low: 'Development area', mid: 'Solid foundation', high: 'Strength' },
+          levelLabels: { low: 'Growth area', mid: 'Solid foundation', high: 'Strength' },
           typesKicker: 'All types',
           typesTitle: 'The five innovation types',
           typesIntro: 'Each type describes a typical pattern of the four areas. The ship shows that pattern.',
@@ -1352,9 +1354,9 @@ var ITZ_CONFIG = {
           teamCountOne: 'At the moment only your own result is included in the analysis.',
           teamWait: 'The combined team results are unlocked as soon as a second person has taken part.',
           shareTitle: 'How to invite your team to the analysis',
-          shareHint: 'Share this link in your preferred channel (for example MS Teams, Slack or WhatsApp). Anyone who opens it sees the current state and can take part. Afterwards each participant shares the newly generated link from their own result in the group again. That way the team results are updated and extended with every new participant.',
+          shareHint: 'Share this link in your preferred channel (for example MS Teams, Slack or WhatsApp). Anyone who opens it sees the current state and can take part. Every new participant is added to the team results automatically.',
           groupSubject: 'Invitation to our team analysis: how innovative is our company?',
-          groupBody: 'We are building our shared innovation profile: please open the link and take the anonymous test (about 5 minutes). Afterwards share the link from your own result here in the group again. That way our analysis grows step by step. Your team code is: {code}\n{link}',
+          groupBody: 'We are building our shared innovation profile: please open the link and take the anonymous test (about 5 minutes). Every participant is added to our shared analysis automatically. Your team code is: {code}\n{link}',
           leadText: 'So far there are {n} results, including yours.',
           leadTextOne: 'So far only your own result is in. Invite colleagues so that a comparison can emerge.',
           inviteMore: 'Invite colleagues',
@@ -1403,7 +1405,7 @@ var ITZ_CONFIG = {
             bookButton: 'To the book',
             ownResult: 'Back to my result',
             takeTest: 'Take the test',
-            privacy: 'Privacy note: all results are encoded only in this link and processed locally in your browser. No names or personal data are transmitted.',
+            privacy: 'Privacy note: for the team results only the answer pattern of each participant is stored, without names or other personal data.',
             deleteTeam: 'Delete team round',
             deleteAsk: 'Delete this team round and all its results?'
           }
@@ -1414,7 +1416,7 @@ var ITZ_CONFIG = {
           points: 'Your answers are scored with the following key: {list}.',
           pointItem: '“{label}”: {points} points',
           average: 'The score of each area is the average of its five statements. The overall result is the mean of all four areas.',
-          levels: 'A score of {high} points or more marks an area as a strength, while scores below {low} points show a development area. Everything in between is a solid foundation.',
+          levels: 'A score of {high} points or more marks an area as a strength, while scores below {low} points show a growth area. Everything in between is a solid foundation.',
           typing: 'For the type, two areas each are combined: “Leadership” and “Organization” form the structural framework, while “Culture” and “External orientation” act as sources of impulses. If both clusters reach at least {high} points, the type is “{systematiker}”. If both are below {low} points, the type is “{bewahrer}”. If the framework exceeds the impulses by at least {gap} points, the type is “{umsetzer}”; in the opposite case it is “{entdecker}”. All other combinations are “{verbesserer}”.',
           sources: 'The four areas are based on the book “Innovation Is Not Random”. Twelve of the twenty statements are derived from its checklists, the remaining eight follow the reasoning of its chapters. The five types and their thresholds were designed specifically for this assessment and have not yet been validated empirically against company data.',
           limits: 'Please note: this result is based on an individual self-assessment. It is by nature subjective and cannot be compared directly with the objective figures of the TOP 100.'
@@ -1422,7 +1424,7 @@ var ITZ_CONFIG = {
         footer: {
           disclaimer: 'This test is intended for orientation and does not replace a scientific analysis.',
           sources: 'The statements are based on the checklists in the book “Innovation ist kein Zufall” (English edition: “Innovation Is Not Random”) by Nikolaus Franke and Rudolf Dömötör. All figures are taken from this book.',
-          privacy: 'Privacy: your entries are processed only locally in your browser. No cookies are used and no data is transmitted.',
+          privacy: 'Privacy: your entries are processed locally in your browser. No cookies are used. Only if you take part in a team round is your answer pattern stored, without your name, so that your team can see the shared results.',
           restart: 'Restart the test'
         }
       }
@@ -1894,7 +1896,7 @@ var ITZ_ASSETS = {
     var y = 92 + 12 + size * .8;
     g.fillStyle = GOLDL; g.fillText(parts[0], x0, y);
     if (parts[1]) { y += size * .94; g.fillStyle = IVORY; g.fillText(parts[1], x0, y); }
-    g.font = 'italic 400 30px ' + FONT_SERIF; g.fillStyle = 'rgba(239,232,218,.9)';
+    g.font = '400 30px ' + FONT_SANS; g.fillStyle = 'rgba(239,232,218,.9)';
     var tl = wrap(g, type.tagline, maxW);
     y += 48; tl.forEach(function (l, k) { g.fillText(l, x0, y + k * 34); }); y += (tl.length - 1) * 34;
     var gap = tl.length > 1 ? 30 : 33, bx0 = 334, bw = 236;
@@ -2051,13 +2053,58 @@ var ITZ_ASSETS = {
       '<button type="submit" class="itz-btn itz-btn--line">' + esc(TM.joinStart) + '</button></div></form></div></dialog>';
   }
   function teamName(t, withQuotes) { var n = (t && t.name) || ''; return withQuotes ? (n ? (lang === 'en' ? ' “' + n + '”' : ' „' + n + '“') : '') : (n || T.team.board.unnamed); }
-  /* Ein Link pro Team: Er trägt die Team-ID und alle bisher bekannten Ergebnisse (je 12 Zeichen, ohne Namen). */
-  function teamLink(id) {
-    var t = loadTeams()[id] || { name: '', members: [] };
-    var codes = (t.members || []).map(function (m) { return m.code.replace(/-/g, ''); }).join('');
-    return testUrl() + '#team=' + id + (t.name ? '&name=' + encodeURIComponent(t.name) : '') + (codes ? '&r=' + codes : '');
-  }
+  /* Ein Link pro Team. Die Ergebnisse liegen auf dem Server, ältere Links mit &r= werden weiter eingelesen. */
+  function teamLink(id) { return testUrl() + '#team=' + id; }
   function inviteLink(id) { return teamLink(id); }
+  var SRV = C.team.server || {}, memMember = '', pushed = '';
+  function memberId() {
+    var m = '';
+    try { m = localStorage.getItem('itz-mitglied') || ''; } catch (e) {}
+    if (!/^[0-9a-z]{16,40}$/.test(m)) {
+      var a = new Uint8Array(12); if (window.crypto && crypto.getRandomValues) crypto.getRandomValues(a); else for (var i = 0; i < 12; i++) a[i] = Math.floor(Math.random() * 256);
+      m = memMember || Array.prototype.map.call(a, function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
+      memMember = m; try { localStorage.setItem('itz-mitglied', m); } catch (e) {}
+    }
+    return m;
+  }
+  function rpc(fn, body) {
+    if (!SRV.url || !window.fetch) return Promise.reject(new Error('offline'));
+    return fetch(SRV.url + '/rest/v1/rpc/' + fn, { method: 'POST', headers: { apikey: SRV.key, Authorization: 'Bearer ' + SRV.key, 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.status === 204 ? null : r.json(); });
+  }
+  /* Holt alle Ergebnisse des Teams; meldet true, wenn sich etwas geändert hat */
+  function pullTeam(id) {
+    return rpc('itz_team_codes', { p_team: id }).then(function (codes) {
+      var teams = loadTeams(), t = teams[id] || (teams[id] = { name: '', created: Date.now(), members: [] }), me = selfMember(t), mine = false;
+      var before = (t.members || []).map(function (m) { return m.code; }).sort().join();
+      var ms = [];
+      (codes || []).forEach(function (c) {
+        var d = decodeResult(typeof c === 'string' ? c : c.itz_team_codes); if (!d) return;
+        var m = { code: d.code, role: d.role, added: 0 };
+        if (me && !mine && me.code === d.code) { m.self = true; mine = true; ms.unshift(m); } else ms.push(m);
+      });
+      if (me && !mine) ms.unshift(me);
+      t.members = ms; saveTeams(teams);
+      return before !== ms.map(function (m) { return m.code; }).sort().join();
+    }).catch(function () { return false; });
+  }
+  function refreshTeam() {
+    var id = state.screen === 'team' ? state.board : state.leadTeam;
+    if (!id || (state.screen !== 'team' && state.screen !== 'result')) return;
+    pullTeam(id).then(function (changed) {
+      if (!changed) return;
+      if (state.screen === 'team' && state.board === id) render(false);
+      else if (state.screen === 'result' && state.leadTeam === id) refreshTeamSec();
+    });
+  }
+  function pushSelf(id, code) {
+    var key = id + code;
+    if (pushed === key) return;
+    pushed = key;
+    rpc('itz_team_join', { p_team: id, p_member: memberId(), p_code: code.replace(/-/g, '') }).then(refreshTeam, function () { pushed = ''; });
+  }
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') refreshTeam(); });
+  setInterval(function () { if (document.visibilityState === 'visible') refreshTeam(); }, 20000);
   function selfMember(team) { return team && (team.members || []).filter(function (m) { return m.self && decodeResult(m.code); })[0]; }
   function answersDone() { return state.answers.every(function (a) { return a != null; }); }
   function addMember(team, d, self) {
@@ -2071,8 +2118,10 @@ var ITZ_ASSETS = {
     if (!state.leadTeam || !answersDone()) return;
     var teams = loadTeams(), t = teams[state.leadTeam];
     if (!t) return;
-    addMember(t, decodeResult(encodeResult(state.answers, state.role)), true);
+    var d = decodeResult(encodeResult(state.answers, state.role));
+    addMember(t, d, true);
     saveTeams(teams);
+    pushSelf(state.leadTeam, d.code);
   }
   function createTeam(name) {
     var teams = loadTeams(), id = newTeamId();
@@ -2096,8 +2145,8 @@ var ITZ_ASSETS = {
     saveTeams(teams);
     state.leadTeam = id;
     if (!selfMember(teams[id])) { state.invite = { id: id, name: teams[id].name || '' }; try { sessionStorage.setItem('itz-einladung', JSON.stringify(state.invite)); } catch (e) {} }
-    /* Liegen schon Ergebnisse vor, sieht man zuerst die Team-Auswertung */
-    if ((teams[id].members || []).length) { state.board = id; state.screen = 'team'; }
+    /* Wer den Link öffnet, sieht zuerst die Team-Auswertung */
+    state.board = id; state.screen = 'team';
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
   try { if (!state.invite) { var inv = JSON.parse(sessionStorage.getItem('itz-einladung') || 'null'); if (inv && inv.id) state.invite = inv; } } catch (e) {}
@@ -2205,7 +2254,7 @@ var ITZ_ASSETS = {
     var TM = T.team, B = TM.board, teams = loadTeams(), team = teams[id] || { name: '', members: [] }, me = selfMember(team);
     var n = (team.members || []).length;
     var head = '<section class="itz-sec itz-sec--first itz-teamhead"><h1 class="itz-h2" id="itz-h" tabindex="-1">' + esc(B.title) + '</h1><p class="itz-tagline itz-serif">' + esc(teamName(team)) + '</p>' +
-      '<p class="itz-intro">' + esc(n === 1 ? B.countOne : fill(B.count, { n: n })) + (n < C.team.minMembers ? ' ' + esc(TM.teamWait) : '') + '</p>' +
+      '<p class="itz-intro">' + esc(n === 1 ? B.countOne : n ? fill(B.count, { n: n }) : '') + (n < C.team.minMembers ? ' ' + esc(TM.teamWait) : '') + '</p>' +
       '<div class="itz-teamfoot" style="margin-top:22px">' + (me || answersDone()
         ? '<button type="button" class="itz-btn itz-btn--line" data-action="team-back">' + esc(B.ownResult) + '</button>'
         : '<button type="button" class="itz-btn" data-action="team-start">' + esc(B.join) + ARROW + '</button>') + '</div></section>';
@@ -2514,8 +2563,8 @@ var ITZ_ASSETS = {
     root.setAttribute('lang', lang);
     if (state.screen === 'start') root.innerHTML = viewStart();
     else if (state.screen === 'question') { root.innerHTML = viewQuestion(); updateQuestion(false); }
-    else if (state.screen === 'team') root.innerHTML = viewTeam(state.board);
-    else { lastResult = compute(); syncSelf(); root.innerHTML = viewResult(lastResult); prepareShare(lastResult); }
+    else if (state.screen === 'team') { root.innerHTML = viewTeam(state.board); refreshTeam(); }
+    else { lastResult = compute(); syncSelf(); root.innerHTML = viewResult(lastResult); prepareShare(lastResult); refreshTeam(); }
     if (focus !== false) {
       var h = root.querySelector('#itz-h');
       if (h) h.focus({ preventScroll: true });
